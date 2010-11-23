@@ -7,6 +7,10 @@ INCLUDEPATH += ./src
 
 # Input
 HEADERS += ./src/saper.h \
-    src/cell.h
+	 src/cell.h \
+	 src/saperbutton.h \
+	 src/saperboard.h
 SOURCES += ./src/main.cpp ./src/saper.cpp \
-    src/cell.cpp
+	 src/cell.cpp \
+	 src/saperbutton.cpp \
+	 src/saperboard.cpp

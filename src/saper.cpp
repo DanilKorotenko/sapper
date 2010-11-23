@@ -136,9 +136,9 @@ void Saper::check(int x,int y)
 		if (nn_bombs==0)
 		{
 			cmd1->hide();
-			for (k=x-1;k<x+2;k++)
+			for (k = x - 1; k < x + 2; k++)
 			{
-				for(l=y-1;l<y+2;l++)
+				for(l = y - 1; l < y + 2; l++)
 				{
 					check(k,l);
 				}
