@@ -1,13 +1,9 @@
 #ifndef _saper_h_
 #define _saper_h_
 
-using namespace std;
-
 #include <QWidget>
 #include <QVector>
 #include <QMouseEvent>
-
-#include <vector>
 
 class QPushButton;
 class QGridLayout;
