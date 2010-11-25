@@ -1,11 +1,13 @@
 #include "dataModelTest.h"
 
+#include <QPointer>
+
 #include "sboard.h"
 #include "scell.h"
 
-void DataModelTest::testBoardCreation()
+void DataModelTest::testCorrectBoardCreation()
 {
-//Create an empty game board
+//Create a game board with size 2x2
 //  - -
 // | | |
 //  - -
@@ -15,7 +17,9 @@ void DataModelTest::testBoardCreation()
 	qint8 boardXSize = 2;
 	qint8 boardYSize = 2;
 
-	SBoard *board = new SBoard(boardXSize, boardYSize);
+	QPointer<SBoard> board = new SBoard(boardXSize, boardYSize);
+
+	QVERIFY(NULL != board); //correct created board must not be nil
 
 	//Verify initial state
 	for (qint8 indexX = 0; indexX < boardXSize; indexX++)
@@ -30,6 +34,12 @@ void DataModelTest::testBoardCreation()
 	}
 
 	delete board;
+}
+
+void DataModelTest::testEmptyBoardCreation()
+{
+	QPointer<SBoard> board = new SBoard(0, 0);
+	QVERIFY(NULL == board);
 }
 
 QTEST_MAIN(DataModelTest)

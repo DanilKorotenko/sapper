@@ -4,7 +4,8 @@ class DataModelTest: public QObject
 {
 	Q_OBJECT
 private slots:
-	void testBoardCreation();
+	void testCorrectBoardCreation();
+	void testEmptyBoardCreation();
 
 };
 

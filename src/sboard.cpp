@@ -4,6 +4,11 @@
 
 SBoard::SBoard(qint8 width, qint8 height, QObject *parent) : QObject(parent)
 {
+	if ((0 == width) || (0 == height))
+	{
+		delete this;
+	}
+
 	for (qint8 indexX = 0; indexX < width; indexX++)
 	{
 		SCellVector cellsVector;
@@ -15,7 +20,7 @@ SBoard::SBoard(qint8 width, qint8 height, QObject *parent) : QObject(parent)
 	}
 }
 
-QVector<SCellVector> SBoard::cells()
+QVector<SCellVector> SBoard::cells() const
 {
 	return _cells;
 }

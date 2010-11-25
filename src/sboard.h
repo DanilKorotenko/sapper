@@ -14,7 +14,7 @@ class SBoard : public QObject
 public:
 	explicit SBoard(qint8 width, qint8 height, QObject *parent = 0);
 
-	QVector<SCellVector> cells();
+	QVector<SCellVector> cells() const;
 
 private:
 	QVector<SCellVector> _cells;
