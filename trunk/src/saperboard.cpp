@@ -3,10 +3,9 @@
 
 #include <QButtonGroup>
 #include <QGridLayout>
-
 #include <QDateTime>
-
 #include <QKeyEvent>
+#include <QMessageBox>
 
 SaperBoard::SaperBoard(QSize size, qint8 numberOfBombs, QWidget *parent) :
 	QWidget(parent), _size(size), _numberOfBombs(numberOfBombs)
@@ -53,7 +52,6 @@ void SaperBoard::keyPressEvent(QKeyEvent *event)
 	}
 }
 
-
 void SaperBoard::reset()
 {
 	// reset bombs
@@ -74,10 +72,24 @@ void SaperBoard::reset()
 			indexOfBomb++;
 		}
 	}
-
 }
 
 void SaperBoard::buttonClicked(QAbstractButton *button)
+{
+	SaperButton *saperButton = (SaperButton *)button;
+
+	if (saperButton->hasBomb())
+	{
+		QMessageBox::information(this, tr("Game over"), tr("The game is over."),
+			QMessageBox::Ok);
+	}
+	else
+	{
+
+	}
+}
+
+void SaperBoard::checkCell(qint8 indexX, qint8 indexY)
 {
 
 }
