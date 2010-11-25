@@ -36,10 +36,4 @@ void DataModelTest::testCorrectBoardCreation()
 	delete board;
 }
 
-void DataModelTest::testEmptyBoardCreation()
-{
-	QPointer<SBoard> board = new SBoard(0, 0);
-	QVERIFY(NULL == board);
-}
-
 QTEST_MAIN(DataModelTest)
