@@ -3,6 +3,9 @@
 SCell::SCell(QObject *parent) :
 	 QObject(parent)
 {
+	_hasBomb = false;
+	_checked = false;
+	_numberOfBombsArround = 0;
 }
 
 bool SCell::hasBomb()

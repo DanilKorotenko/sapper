@@ -1,6 +1,6 @@
 #include <QtTest/QtTest>
 
-class MainTest: public QObject
+class DataModelTest: public QObject
 {
 	Q_OBJECT
 private slots:

@@ -7,15 +7,15 @@ CONFIG += qtestlib
 INCLUDEPATH += ./src
 
 # Input
-HEADERS += src/saper.h \
+HEADERS += 	src/UnitTests/dataModelTest.h \
+	src/saper.h \
 	src/cell.h \
 	src/saperbutton.h \
 	src/saperboard.h \
 	src/scell.h \
 	src/sboard.h \
-    src/UnitTests/mainTest.h
 
-SOURCES += src/UnitTests/mainTest.cpp \
+SOURCES += src/UnitTests/dataModelTest.cpp \
 	src/saper.cpp \
 	src/cell.cpp \
 	src/saperbutton.cpp \
