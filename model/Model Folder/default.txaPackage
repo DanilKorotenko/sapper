@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+
+<nodeSet  version="1.1">
+	<node uin="-tdsqjuggwq6egy-a5e6eq">
+		<property name="$metaclass" value="Class20"/>
+		<property name="$name" value="SCell"/>
+		<node uin="hnimszggwq6xa17bsmkw">
+			<property name="$metaclass" value="Property20"/>
+			<property name="mod__typeReferencedElement" value="design:node:::PrimitiveType.Boolean"/>
+			<property name="mod__type" value="Boolean"/>
+			<property name="$name" value="hasBomb"/>
+			<link uin="ieje0rggwq7wcm-nhj8kl">
+				<property name="$metaclass" value="TypeLink"/>
+				<participant referencedUin="design:node:::hnimszggwq6xa17bsmkw:-tdsqjuggwq6egy-a5e6eq" role="Client"></participant>
+				<participant referencedUin="design:node:::PrimitiveType.Boolean" role="Supplier"></participant>
+			</link>
+		</node>
+		<node uin="hnimszggwqaymo-hzek7p">
+			<property name="$metaclass" value="Property20"/>
+			<property name="mod__typeReferencedElement" value="design:node:::PrimitiveType.Boolean"/>
+			<property name="mod__type" value="Boolean"/>
+			<property name="$name" value="checked"/>
+			<link uin="ieje0rggwqb8uqnnaqd9">
+				<property name="$metaclass" value="TypeLink"/>
+				<participant referencedUin="design:node:::hnimszggwqaymo-hzek7p:-tdsqjuggwq6egy-a5e6eq" role="Client"></participant>
+				<participant referencedUin="design:node:::PrimitiveType.Boolean" role="Supplier"></participant>
+			</link>
+		</node>
+		<node uin="hnimszggwqbr0d-oza7c5">
+			<property name="$metaclass" value="Property20"/>
+			<property name="mod__typeReferencedElement" value="design:node:::PrimitiveType.Integer"/>
+			<property name="mod__type" value="Integer"/>
+			<property name="$name" value="numberOfBombsArround"/>
+			<link uin="ieje0rggwqbr0d-ydqclf">
+				<property name="$metaclass" value="TypeLink"/>
+				<participant referencedUin="design:node:::hnimszggwqbr0d-oza7c5:-tdsqjuggwq6egy-a5e6eq" role="Client"></participant>
+				<participant referencedUin="design:node:::PrimitiveType.Integer" role="Supplier"></participant>
+			</link>
+		</node>
+	</node>
+	<node uin="-tdsqjuggwqcv8p-2c8665">
+		<property name="$metaclass" value="Class20"/>
+		<property name="$name" value="SBoard"/>
+		<node uin="hnimszggwqj6e8owyd3p">
+			<property name="$metaclass" value="Property20"/>
+			<property name="mod__typeReferencedElement" value="design:node:::-tdsqjuggwq6egy-a5e6eq"/>
+			<property name="mod__type" value="SCell"/>
+			<property name="$name" value="cells"/>
+			<property name="aggregationKind" value="$aggregationComposite"/>
+			<link uin="ieje0rggwqk6py-n9bbu4">
+				<property name="$metaclass" value="TypeLink"/>
+				<participant referencedUin="design:node:::hnimszggwqj6e8owyd3p:-tdsqjuggwqcv8p-2c8665" role="Client"></participant>
+				<participant referencedUin="design:node:::-tdsqjuggwq6egy-a5e6eq" role="Supplier"></participant>
+			</link>
+		</node>
+	</node>
+</nodeSet>

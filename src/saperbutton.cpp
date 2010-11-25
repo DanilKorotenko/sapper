@@ -22,3 +22,27 @@ void SaperButton::setHasBomb(bool value)
 		this->setText("");
 	}
 }
+
+bool SaperButton::checked()
+{
+	return _checked;
+}
+
+void SaperButton::setIsChecked(bool value)
+{
+	_checked = value;
+}
+
+void SaperButton::setNumberOfBobs(qint8 value)
+{
+	_numberOfBombs = value;
+	if (0 == _numberOfBombs)
+	{
+		this->hide();
+	}
+	else
+	{
+		this->setText(QString("%1").arg(_numberOfBombs));
+	}
+}
+
