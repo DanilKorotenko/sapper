@@ -5,7 +5,7 @@ SCell::SCell(QObject *parent) :
 {
 	_hasBomb = false;
 	_checked = false;
-	_marked = false;
+	_flagged = false;
 	_numberOfBombsArround = 0;
 }
 
@@ -29,14 +29,14 @@ void SCell::setChecked(bool value)
 	_checked = value;
 }
 
-bool SCell::marked()
+bool SCell::flagged()
 {
-	return _marked;
+	return _flagged;
 }
 
-void SCell::toggleMark()
+void SCell::toggleFlag()
 {
-	_marked = !_marked;
+	_flagged = !_flagged;
 }
 
 qint8 SCell::numberOfBombsArround()

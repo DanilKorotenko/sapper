@@ -15,8 +15,8 @@ public:
 	bool checked();
 	void setChecked(bool value);
 
-	bool marked();
-	void toggleMark();
+	bool flagged();
+	void toggleFlag();
 
 	qint8 numberOfBombsArround();
 	void setNumberOfBombsArround(qint8 value);
@@ -24,7 +24,7 @@ public:
 private:
 	bool _hasBomb;
 	bool _checked;
-	bool _marked;
+	bool _flagged;
 	qint8 _numberOfBombsArround;
 
 };

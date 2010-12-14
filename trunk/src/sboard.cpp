@@ -24,7 +24,7 @@ SGameCondition SBoard::makeTurn(quint8 indexX, quint8 indexY, bool setFlag)
 	SCell *cell = _cells.at(indexX).at(indexY);
 	if (setFlag)
 	{
-		cell->toggleMark();
+		cell->toggleFlag();
 		if (this->checkVictory())
 		{
 			result = kSWinned;
@@ -57,7 +57,7 @@ bool SBoard::checkVictory()
 		{
 			if ((*iteratorY)->hasBomb())
 			{
-				result = (*iteratorY)->marked() && result;
+				result = (*iteratorY)->flagged() && result;
 			}
 		}
 	}
