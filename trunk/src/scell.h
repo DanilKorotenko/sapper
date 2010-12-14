@@ -15,12 +15,16 @@ public:
 	bool checked();
 	void setChecked(bool value);
 
+	bool marked();
+	void toggleMark();
+
 	qint8 numberOfBombsArround();
 	void setNumberOfBombsArround(qint8 value);
 
 private:
 	bool _hasBomb;
 	bool _checked;
+	bool _marked;
 	qint8 _numberOfBombsArround;
 
 };
