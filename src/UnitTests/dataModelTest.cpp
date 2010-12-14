@@ -30,7 +30,7 @@ void DataModelTest::testBoardCreation()
 		{
 			QCOMPARE((*iteratorY)->hasBomb(), false);
 			QCOMPARE((*iteratorY)->checked(), false);
-			QCOMPARE((*iteratorY)->marked(), false);
+			QCOMPARE((*iteratorY)->flagged(), false);
 			QCOMPARE((*iteratorY)->numberOfBombsArround(), (qint8)0);
 		}
 	}
@@ -43,11 +43,11 @@ void DataModelTest::testMarkUnMark()
 	cell->setHasBomb(true);
 	QCOMPARE(cell->hasBomb(), true);
 
-	cell->toggleMark();
-	QCOMPARE(cell->marked(), true);
+	cell->toggleFlag();
+	QCOMPARE(cell->flagged(), true);
 
-	cell->toggleMark();
-	QCOMPARE(cell->marked(), false);
+	cell->toggleFlag();
+	QCOMPARE(cell->flagged(), false);
 }
 
 void DataModelTest::testCheckVictory()
@@ -63,9 +63,9 @@ void DataModelTest::testCheckVictory()
 	QCOMPARE(_board->checkVictory(), false);
 	_board->_cells.at(1).at(1)->setHasBomb(true);
 	QCOMPARE(_board->checkVictory(), false);
-	_board->_cells.at(0).at(0)->toggleMark();
+	_board->_cells.at(0).at(0)->toggleFlag();
 	QCOMPARE(_board->checkVictory(), false);
-	_board->_cells.at(1).at(1)->toggleMark();
+	_board->_cells.at(1).at(1)->toggleFlag();
 	QCOMPARE(_board->checkVictory(), true);
 
 }
