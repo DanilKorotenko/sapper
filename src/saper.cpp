@@ -107,9 +107,9 @@ void Saper::check(int x,int y)
 	int col=n*m;
 	int i,k,l;
 	int nn_bombs=0;
-	i=x*n+y;
-	if (((i<col)&&(i>=0)) && ((x<n)&&(x>=0)&&(y<m)&&(y>=0)) &&
-			(!pole[x][y].val) && (!pole[x][y].checked))
+	i = x * n + y;
+	if (((i < col) && (i >= 0)) && (( x < n) && (x >= 0) && (y < m) && (y >= 0))
+		&& (!pole[x][y].val) && (!pole[x][y].checked))
 	{
 		pole[x][y].checked = true;
 		cells_checked--;

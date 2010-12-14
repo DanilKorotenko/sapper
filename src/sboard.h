@@ -8,16 +8,33 @@ class SCell;
 
 typedef QVector<SCell *> SCellVector;
 
+enum SGameCondition
+{
+	kSContinue = 0,
+	kSBombed,
+	kSWinned
+};
+
 class SBoard : public QObject
 {
 	Q_OBJECT
 public:
-	explicit SBoard(qint8 width, qint8 height, QObject *parent = 0);
+	explicit SBoard(quint8 width, quint8 height, QObject *parent = 0);
 
-	QVector<SCellVector> cells() const;
+	SGameCondition makeTurn(quint8 indexX, quint8 indexY, bool setFlag);
+
+	// Starts the checking of board from the specified cell.
+	// Set to neighbours cells status checked and numbers of bombs around.
+	// Iterative process. Calls this method for nested cells.
+	void check(quint8 indexX, quint8 indexY);
+
+	bool checkVictory();
+
+	QVector<SCellVector> _cells;
 
 private:
-	QVector<SCellVector> _cells;
+
+
 
 };
 
