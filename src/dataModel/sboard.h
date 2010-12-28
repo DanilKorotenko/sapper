@@ -19,8 +19,16 @@ class SBoard : public QObject
 {
 	Q_OBJECT
 public:
-	explicit SBoard(quint8 width, quint8 height, QObject *parent = 0);
+//Constructor/Destructor
+	explicit SBoard(QObject *parent = 0);
+	SBoard(quint8 width, quint8 height, QObject *parent = 0);
 
+	~SBoard();
+
+//service methods
+	void setSize(quint8 width, quint8 height);
+
+//game methods
 	SGameCondition makeTurn(quint8 indexX, quint8 indexY, bool setFlag);
 
 	// Starts the checking of board from the specified cell.
@@ -30,11 +38,11 @@ public:
 
 	bool checkVictory();
 
+//TODO: must be private
 	QVector<SCellVector> _cells;
 
 private:
-
-
+	void clear();
 
 };
 
