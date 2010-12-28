@@ -1,26 +1,18 @@
 #ifndef STERMINALBOARD_H
 #define STERMINALBOARD_H
 
-#include <QObject>
-#include <QPointer>
+#include "dataModel/DataModel.h"
 
-class SBoard;
-
-class STerminalBoard : public QObject
+class STerminalBoard : public SBoard
 {
 	Q_OBJECT
 public:
-	STerminalBoard(QObject *parent = 0);
+	explicit STerminalBoard(QObject *parent = 0);
+	STerminalBoard(quint8 width, quint8 height, QObject *parent = 0);
 
-	void setBoardSize(quint8 sizeX, quint8 sizeY);
-	void resetBoard();
 
 	QString stringRepresentation();
 
-public slots:
-
-private:
-	QPointer<SBoard> _board;
 };
 
 #endif // STERMINALBOARD_H

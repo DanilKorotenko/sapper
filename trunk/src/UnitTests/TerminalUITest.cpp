@@ -13,17 +13,21 @@ void TerminalUITest::init()
 // | | |
 //  - -
 
-//	qint8 boardXSize = 2;
-//	qint8 boardYSize = 2;
-
-	_terminalBoard = new STerminalBoard();
+	_terminalBoard = new STerminalBoard(2,2);
 
 	QVERIFY(!_terminalBoard.isNull());
 }
 
 void TerminalUITest::testBoardDisplaying()
 {
+	QString boardStringRepresentation(" - -\n"
+									  "| | |\n"
+									  " - -\n"
+									  "| | |\n"
+									  " - -\n");
 
+	QCOMPARE(_terminalBoard->stringRepresentation(),
+		boardStringRepresentation);
 }
 
 void TerminalUITest::cleanup()

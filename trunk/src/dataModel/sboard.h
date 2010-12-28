@@ -38,7 +38,7 @@ public:
 
 	bool checkVictory();
 
-//TODO: must be private
+//TODO: must be protected
 	QVector<SCellVector> _cells;
 
 private:
