@@ -13,13 +13,13 @@ public:
 	void setHasBomb(bool value);
 
 	bool checked();
-	void setChecked(bool value);
+	void toggleChecked();
 
 	bool flagged();
 	void toggleFlag();
 
-	qint8 numberOfBombsArround();
-	void setNumberOfBombsArround(qint8 value);
+	quint8 numberOfBombsArround();
+	void setNumberOfBombsArround(quint8 value);
 
 private:
 	bool _hasBomb;

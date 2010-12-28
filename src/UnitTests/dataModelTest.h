@@ -16,7 +16,7 @@ private slots:
 	void testBoardCreation();
 	void testMarkUnMark();
 	void testCheckVictory();
-	void testMakeTurn();
+	void testMakeWinnerTurn();
 	void testGameOverTurn();
 	void testCellsChecking();
 

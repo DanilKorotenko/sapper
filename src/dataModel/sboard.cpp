@@ -36,14 +36,47 @@ SGameCondition SBoard::makeTurn(quint8 indexX, quint8 indexY, bool setFlag)
 	}
 	else
 	{
-
+		this->check(indexX, indexY);
 	}
 	return result;
 }
 
-void SBoard::check(quint8 indexX, quint8 indexY)
+void SBoard::check(qint8 indexX, qint8 indexY)
 {
+	SCell *cell = _cells.value(indexX).value(indexY, NULL);
+	if ((NULL == cell) || (cell->hasBomb()) || (cell->checked()))
+	{
+		return;
+	}
+	cell->toggleChecked();
+	quint8 numberOfBombs = 0;
+	for(qint8 cellIndexX = indexX-1; cellIndexX <= indexX + 1; cellIndexX++)
+	{
+		for(qint8 cellIndexY = indexY-1; cellIndexY <= indexY + 1;
+			cellIndexY++)
+		{
+			SCell *tempCell = _cells.value(cellIndexX).value(cellIndexY, NULL);
+			if ((NULL != tempCell) && (tempCell->hasBomb()))
+			{
+				numberOfBombs++;
+			}
+		}
+	}
 
+	cell->setNumberOfBombsArround(numberOfBombs);
+
+	if (0 == numberOfBombs)
+	{
+		for(quint8 cellIndexX = indexX-1; cellIndexX <= indexX + 1;
+			cellIndexX++)
+		{
+			for(quint8 cellIndexY = indexY-1; cellIndexY <= indexY + 1;
+				cellIndexY++)
+			{
+				this->check(cellIndexX, cellIndexY);
+			}
+		}
+	}
 }
 
 bool SBoard::checkVictory()
@@ -57,6 +90,7 @@ bool SBoard::checkVictory()
 		{
 			if ((*iteratorY)->hasBomb())
 			{
+				//check if cell has bomb and flag
 				result = (*iteratorY)->flagged() && result;
 			}
 		}

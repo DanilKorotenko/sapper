@@ -1,7 +1,6 @@
 #include "scell.h"
 
-SCell::SCell(QObject *parent) :
-	 QObject(parent)
+SCell::SCell(QObject *parent) : QObject(parent)
 {
 	_hasBomb = false;
 	_checked = false;
@@ -24,9 +23,9 @@ bool SCell::checked()
 	return _checked;
 }
 
-void SCell::setChecked(bool value)
+void SCell::toggleChecked()
 {
-	_checked = value;
+	_checked = !_checked;
 }
 
 bool SCell::flagged()
@@ -39,12 +38,12 @@ void SCell::toggleFlag()
 	_flagged = !_flagged;
 }
 
-qint8 SCell::numberOfBombsArround()
+quint8 SCell::numberOfBombsArround()
 {
 	return _numberOfBombsArround;
 }
 
-void SCell::setNumberOfBombsArround(qint8 value)
+void SCell::setNumberOfBombsArround(quint8 value)
 {
 	_numberOfBombsArround = value;
 }
