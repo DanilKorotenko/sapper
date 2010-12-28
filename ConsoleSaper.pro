@@ -4,8 +4,8 @@
 
 TEMPLATE = app
 INCLUDEPATH += ./src
+CONFIG += console
 
 # Input
-HEADERS += src/TerminalApplication/STerminalApplication.h
-SOURCES += ./src/TerminalApplication/main.cpp \
-	src/TerminalApplication/STerminalApplication.cpp
+HEADERS +=
+SOURCES += ./src/ConsoleApplication/main.cpp
