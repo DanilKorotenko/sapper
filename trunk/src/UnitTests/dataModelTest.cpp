@@ -1,6 +1,6 @@
 #include "dataModelTest.h"
 
-#include "scell.h"
+#include "dataModel/scell.h"
 
 void DataModelTest::init()
 {
@@ -21,20 +21,25 @@ void DataModelTest::init()
 
 void DataModelTest::testBoardCreation()
 {
-	//Verify initial state
+	this->verifyInitialState();
+}
+
+void DataModelTest::testBoardResizing()
+{
+	_board->setSize(8,8);
+	QCOMPARE(_board->_cells.count(), 8);
+
 	for (QVector<SCellVector>::const_iterator iteratorX = _board->_cells.begin();
 		iteratorX != _board->_cells.end(); iteratorX++)
 	{
-		for (SCellVector::const_iterator iteratorY = (*iteratorX).begin();
-			iteratorY != (*iteratorX).end(); iteratorY++)
-		{
-			QCOMPARE((*iteratorY)->hasBomb(), false);
-			QCOMPARE((*iteratorY)->checked(), false);
-			QCOMPARE((*iteratorY)->flagged(), false);
-			QCOMPARE((*iteratorY)->numberOfBombsArround(), (quint8)0);
-		}
+		QCOMPARE((*iteratorX).count(), 8);
 	}
+
+	//test the board has correct initial state after creation.
+	this->verifyInitialState();
 }
+
+// Game process tests
 
 void DataModelTest::testMarkUnMark()
 {
@@ -128,6 +133,24 @@ void DataModelTest::testCellsChecking()
 
 	QCOMPARE(_board->makeTurn(0,0,true), kSWinned);
 
+}
+
+void DataModelTest::verifyInitialState()
+{
+	//Verify initial state
+	//test if we have access to all cells, and all cells has correct state.
+	for (QVector<SCellVector>::const_iterator iteratorX = _board->_cells.begin();
+		iteratorX != _board->_cells.end(); iteratorX++)
+	{
+		for (SCellVector::const_iterator iteratorY = (*iteratorX).begin();
+			iteratorY != (*iteratorX).end(); iteratorY++)
+		{
+			QCOMPARE((*iteratorY)->hasBomb(), false);
+			QCOMPARE((*iteratorY)->checked(), false);
+			QCOMPARE((*iteratorY)->flagged(), false);
+			QCOMPARE((*iteratorY)->numberOfBombsArround(), (quint8)0);
+		}
+	}
 }
 
 void DataModelTest::cleanup()

@@ -2,7 +2,7 @@
 
 #include <QPointer>
 
-#include "sboard.h"
+#include "dataModel/sboard.h"
 
 class DataModelTest: public QObject
 {
@@ -10,10 +10,16 @@ class DataModelTest: public QObject
 private:
 	QPointer<SBoard> _board;
 
+//Additional methods for internal use.
+	void verifyInitialState();
+
 private slots:
 	void init();
 
 	void testBoardCreation();
+	void testBoardResizing();
+
+	//game process tests
 	void testMarkUnMark();
 	void testCheckVictory();
 	void testMakeWinnerTurn();
