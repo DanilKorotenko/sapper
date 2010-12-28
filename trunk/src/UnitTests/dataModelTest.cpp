@@ -29,6 +29,7 @@ void DataModelTest::testBoardResizing()
 	_board->setSize(8,8);
 	QCOMPARE(_board->_cells.count(), 8);
 
+	//test the board has specified size
 	for (QVector<SCellVector>::const_iterator iteratorX = _board->_cells.begin();
 		iteratorX != _board->_cells.end(); iteratorX++)
 	{
