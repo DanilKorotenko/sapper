@@ -15,7 +15,7 @@ public:
 	void setBoardSize(quint8 sizeX, quint8 sizeY);
 	void resetBoard();
 
-	QString boardStringRepresentation();
+	QString stringRepresentation();
 
 public slots:
 

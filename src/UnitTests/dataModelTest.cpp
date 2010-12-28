@@ -1,5 +1,8 @@
 #include "dataModelTest.h"
 
+#include <QTest>
+
+#include "dataModel/sboard.h"
 #include "dataModel/scell.h"
 
 void DataModelTest::init()

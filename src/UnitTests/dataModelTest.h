@@ -1,8 +1,10 @@
-#include <QtTest/QtTest>
+#ifndef DATAMODELTEST_H
+#define DATAMODELTEST_H
 
+#include <QObject>
 #include <QPointer>
 
-#include "dataModel/sboard.h"
+class SBoard;
 
 class DataModelTest: public QObject
 {
@@ -29,3 +31,4 @@ private slots:
 	void cleanup();
 };
 
+#endif // DATAMODELTEST_H
