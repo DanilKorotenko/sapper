@@ -26,4 +26,5 @@ SOURCES += src/UnitTests/dataModelTest.cpp \
 	src/saperboard.cpp \
 	src/dataModel/scell.cpp \
 	src/dataModel/sboard.cpp \
-    src/ui/terminal/STerminalBoard.cpp
+    src/ui/terminal/STerminalBoard.cpp \
+    src/UnitTests/main.cpp

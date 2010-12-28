@@ -159,4 +159,3 @@ void DataModelTest::cleanup()
 	delete _board;
 }
 
-QTEST_MAIN(DataModelTest)
