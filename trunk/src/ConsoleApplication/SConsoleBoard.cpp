@@ -1,19 +1,19 @@
-#include "STerminalBoard.h"
+#include "SConsoleBoard.h"
 
 #include "dataModel/scell.h"
 
-STerminalBoard::STerminalBoard(QObject *parent) : SBoard(parent)
+SConsoleBoard::SConsoleBoard(QObject *parent) : SBoard(parent)
 {
 
 }
 
-STerminalBoard::STerminalBoard(quint8 width, quint8 height, QObject *parent) :
+SConsoleBoard::SConsoleBoard(quint8 width, quint8 height, QObject *parent) :
 	SBoard(width, height, parent)
 {
 
 }
 
-QString STerminalBoard::stringRepresentation()
+QString SConsoleBoard::stringRepresentation()
 {
 	QString result;
 
