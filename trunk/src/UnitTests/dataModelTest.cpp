@@ -31,7 +31,7 @@ void DataModelTest::testBoardCreation()
 			QCOMPARE((*iteratorY)->hasBomb(), false);
 			QCOMPARE((*iteratorY)->checked(), false);
 			QCOMPARE((*iteratorY)->flagged(), false);
-			QCOMPARE((*iteratorY)->numberOfBombsArround(), (qint8)0);
+			QCOMPARE((*iteratorY)->numberOfBombsArround(), (quint8)0);
 		}
 	}
 }
@@ -67,10 +67,9 @@ void DataModelTest::testCheckVictory()
 	QCOMPARE(_board->checkVictory(), false);
 	_board->_cells.at(1).at(1)->toggleFlag();
 	QCOMPARE(_board->checkVictory(), true);
-
 }
 
-void DataModelTest::testMakeTurn()
+void DataModelTest::testMakeWinnerTurn()
 {
 //  - -
 // |*| |
@@ -88,11 +87,46 @@ void DataModelTest::testMakeTurn()
 
 void DataModelTest::testGameOverTurn()
 {
-	//
+//  - -
+// |*| |
+//  - -
+// | | |
+//  - -
+	_board->_cells.at(0).at(0)->setHasBomb(true);
+	QCOMPARE(_board->makeTurn(0,0,false), kSBombed);
+
+	//TODO: when the game condition become 'winned' there are no other turns
+	// player can make
+	// Need to test this condition
+
 }
 
 void DataModelTest::testCellsChecking()
 {
+//  - -
+// |*| |
+//  - -
+// | | |
+//  - -
+	_board->_cells.at(0).at(0)->setHasBomb(true);
+	QCOMPARE(_board->makeTurn(0,1,false), kSContinue);
+
+	QCOMPARE(_board->_cells.at(0).at(1)->numberOfBombsArround(), (quint8)1);
+	QCOMPARE(_board->_cells.at(0).at(1)->checked(), true);
+	QCOMPARE(_board->_cells.at(1).at(1)->numberOfBombsArround(), (quint8)0);
+	QCOMPARE(_board->_cells.at(1).at(1)->checked(), false);
+	QCOMPARE(_board->_cells.at(1).at(0)->numberOfBombsArround(), (quint8)0);
+	QCOMPARE(_board->_cells.at(1).at(0)->checked(), false);
+
+	QCOMPARE(_board->makeTurn(1,1,false), kSContinue);
+	QCOMPARE(_board->_cells.at(1).at(1)->numberOfBombsArround(), (quint8)1);
+	QCOMPARE(_board->_cells.at(1).at(1)->checked(), true);
+
+	QCOMPARE(_board->makeTurn(1,0,false), kSContinue);
+	QCOMPARE(_board->_cells.at(1).at(0)->numberOfBombsArround(), (quint8)1);
+	QCOMPARE(_board->_cells.at(1).at(0)->checked(), true);
+
+	QCOMPARE(_board->makeTurn(0,0,true), kSWinned);
 
 }
 

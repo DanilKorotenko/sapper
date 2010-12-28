@@ -26,7 +26,7 @@ public:
 	// Starts the checking of board from the specified cell.
 	// Set to neighbours cells status checked and numbers of bombs around.
 	// Iterative process. Calls this method for nested cells.
-	void check(quint8 indexX, quint8 indexY);
+	void check(qint8 indexX, qint8 indexY);
 
 	bool checkVictory();
 
