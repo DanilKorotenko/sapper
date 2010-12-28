@@ -18,7 +18,7 @@ void STerminalBoard::resetBoard()
 
 }
 
-QString STerminalBoard::boardStringRepresentation()
+QString STerminalBoard::stringRepresentation()
 {
 	return QString();
 }
