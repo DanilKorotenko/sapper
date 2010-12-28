@@ -4,6 +4,7 @@
 
 STerminalBoard::STerminalBoard(QObject *parent) : QObject(parent)
 {
+
 }
 
 void STerminalBoard::setBoardSize(quint8 sizeX, quint8 sizeY)
