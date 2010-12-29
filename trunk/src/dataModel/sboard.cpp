@@ -6,7 +6,7 @@
 
 SBoard::SBoard(QObject *parent) : QObject(parent)
 {
-
+	_gameOver = false;
 }
 
 SBoard::SBoard(quint8 width, quint8 height, QObject *parent) : QObject(parent)
@@ -22,10 +22,10 @@ SBoard::~SBoard()
 void SBoard::setSize(quint8 width, quint8 height)
 {
 	this->clear();
-	for (quint8 indexX = 0; indexX < width; indexX++)
+	for (quint8 indexX = 0; indexX < height; indexX++)
 	{
 		SCellVector cellsVector;
-		for (quint8 indexY = 0; indexY < height; indexY++)
+		for (quint8 indexY = 0; indexY < width; indexY++)
 		{
 			QPointer<SCell> cell = new SCell();
 			cellsVector.push_back(cell);
@@ -45,11 +45,13 @@ SGameCondition SBoard::makeTurn(quint8 indexX, quint8 indexY, bool setFlag)
 		if (this->checkVictory())
 		{
 			result = kSWinned;
+			_gameOver = true;
 		}
 	}
 	else if (cell->hasBomb())
 	{
 		result = kSBombed;
+		_gameOver = true;
 	}
 	else
 	{

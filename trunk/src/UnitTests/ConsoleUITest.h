@@ -16,6 +16,9 @@ private slots:
 	void init();
 
 	void testBoardDisplaying();
+	void testBigBoardDisplaying();
+	void testBoardInGameDisplayingGameOver();
+	void testBoardInGameDisplayingWin();
 
 	void cleanup();
 
