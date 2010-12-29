@@ -5,7 +5,7 @@ SCell::SCell(QObject *parent) : QObject(parent)
 	_hasBomb = false;
 	_checked = false;
 	_flagged = false;
-	_numberOfBombsArround = 0;
+	_numberOfBombs = 0;
 }
 
 bool SCell::hasBomb()
@@ -38,13 +38,13 @@ void SCell::toggleFlag()
 	_flagged = !_flagged;
 }
 
-quint8 SCell::numberOfBombsArround()
+quint8 SCell::numberOfBombs()
 {
-	return _numberOfBombsArround;
+	return _numberOfBombs;
 }
 
 void SCell::setNumberOfBombsArround(quint8 value)
 {
-	_numberOfBombsArround = value;
+	_numberOfBombs = value;
 }
 

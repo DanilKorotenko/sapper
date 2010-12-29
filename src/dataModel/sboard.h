@@ -40,6 +40,8 @@ public:
 
 //TODO: must be protected
 	QVector<SCellVector> _cells;
+protected:
+	bool _gameOver;
 
 private:
 	void clear();
