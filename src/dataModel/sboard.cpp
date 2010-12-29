@@ -27,12 +27,11 @@ void SBoard::setSize(quint8 width, quint8 height)
 		SCellVector cellsVector;
 		for (quint8 indexY = 0; indexY < width; indexY++)
 		{
-			QPointer<SCell> cell = new SCell();
+			QPointer<SCell> cell = this->createCell();
 			cellsVector.push_back(cell);
 		}
 		_cells.push_back(cellsVector);
 	}
-
 }
 
 SGameCondition SBoard::makeTurn(quint8 indexX, quint8 indexY, bool setFlag)
@@ -115,6 +114,11 @@ bool SBoard::checkVictory()
 		}
 	}
 	return result;
+}
+
+SCell *SBoard::createCell()
+{
+	return new SCell();
 }
 
 void SBoard::clear()
