@@ -1,6 +1,7 @@
 #include "SConsoleBoard.h"
 
 #include "dataModel/scell.h"
+#include "SConsoleCell.h"
 
 SConsoleBoard::SConsoleBoard(QObject *parent) : SBoard(parent)
 {
@@ -50,29 +51,8 @@ QString SConsoleBoard::stringRepresentation()
 				iteratorY != (*iteratorX).end(); iteratorY++)
 			{
 				result.append("|");
-				if ((*iteratorY)->hasBomb() && _gameOver &&
-					!(*iteratorY)->flagged())
-				{
-					result.append("*");
-				}
-				else if ((*iteratorY)->hasBomb() && _gameOver &&
-					(*iteratorY)->flagged())
-				{
-					result.append("-");
-				}
-				else if ((*iteratorY)->flagged())
-				{
-					result.append("F");
-				}
-				else if (0 == (*iteratorY)->numberOfBombs())
-				{
-					result.append(" ");
-				}
-				else
-				{
-					result.append(QString("%1")
-						.arg((*iteratorY)->numberOfBombs()));
-				}
+				SConsoleCell *consoleCell = (SConsoleCell *)(*iteratorY);
+				result.append(consoleCell->stringRepresentation(_gameOver));
 			}
 			result.append("|\n");
 		}
@@ -87,3 +67,9 @@ QString SConsoleBoard::stringRepresentation()
 
 	return result;
 }
+
+SCell *SConsoleBoard::createCell()
+{
+	return new SConsoleCell();
+}
+

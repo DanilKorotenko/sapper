@@ -41,6 +41,8 @@ public:
 //TODO: must be protected
 	QVector<SCellVector> _cells;
 protected:
+	SCell *createCell();
+
 	bool _gameOver;
 
 private:
