@@ -17,8 +17,10 @@ private slots:
 
 	void testBoardDisplaying();
 	void testBigBoardDisplaying();
-	void testBoardInGameDisplayingGameOver();
-	void testBoardInGameDisplayingWin();
+	void testBoardDisplayingGameOver();
+	void testBoardDisplayingWin();
+	void testBoardDisplayingMissedFlag();
+	void testBoardDisplayingNumberOfBombs();
 
 	void cleanup();
 

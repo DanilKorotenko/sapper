@@ -6,12 +6,10 @@
 
 SBoard::SBoard(QObject *parent) : QObject(parent)
 {
-	_gameOver = false;
 }
 
 SBoard::SBoard(quint8 width, quint8 height, QObject *parent) : QObject(parent)
 {
-	_gameOver = false;
 	this->setSize(width, height);
 }
 
@@ -124,6 +122,7 @@ SCell *SBoard::createCell()
 
 void SBoard::clear()
 {
+	_gameOver = false;
 	for (QVector<SCellVector>::const_iterator iteratorX = _cells.begin();
 		iteratorX != _cells.end(); iteratorX++)
 	{
