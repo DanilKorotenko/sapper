@@ -11,6 +11,7 @@ SBoard::SBoard(QObject *parent) : QObject(parent)
 
 SBoard::SBoard(quint8 width, quint8 height, QObject *parent) : QObject(parent)
 {
+	_gameOver = false;
 	this->setSize(width, height);
 }
 
