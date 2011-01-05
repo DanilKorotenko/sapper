@@ -41,6 +41,10 @@ QString SConsoleCell::stringRepresentation(bool gameOver)
 			result = " ";
 		}
 	}
+	else if (flagged())
+	{
+		result = "F";
+	}
 	else
 	{
 		result = "?";
