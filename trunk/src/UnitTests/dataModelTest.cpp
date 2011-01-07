@@ -136,7 +136,13 @@ void DataModelTest::testCellsChecking()
 	QCOMPARE(_board->_cells.at(1).at(0)->checked(), true);
 
 	QCOMPARE(_board->makeTurn(0,0,true), kSWinned);
+}
 
+void DataModelTest::testBombsPlacing()
+{
+	_board->setSize(5,5);
+	_board->placeBombs(5);
+	//TODO: need to add some virifying here.
 }
 
 void DataModelTest::verifyInitialState()

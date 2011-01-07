@@ -27,6 +27,7 @@ private slots:
 	void testMakeWinnerTurn();
 	void testGameOverTurn();
 	void testCellsChecking();
+	void testBombsPlacing();
 
 	void cleanup();
 };
