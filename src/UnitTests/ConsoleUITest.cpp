@@ -172,7 +172,8 @@ void ConsoleUITest::testBoardDisplayingNumberOfBombs()
 	QCOMPARE(_consoleBoard->stringRepresentation(),
 		boardStringRepresentation);
 
-	QCOMPARE(_consoleBoard->makeTurn(1,2,false), kSContinue);
+//	QCOMPARE(_consoleBoard->makeTurn(1,2,false), kSContinue);
+	QCOMPARE(_consoleBoard->makeTurn("c1"), kSContinue);
 	boardStringRepresentation = ("   a b c\n"
 								 "   - - -\n"
 								 "0 |?|2| |\n"
@@ -183,6 +184,41 @@ void ConsoleUITest::testBoardDisplayingNumberOfBombs()
 								 "   - - -\n");
 	QCOMPARE(_consoleBoard->stringRepresentation(),
 		boardStringRepresentation);
+
+	_consoleBoard->setSize(5,5);
+	_consoleBoard->_cells.value(4).value(4, NULL)->setHasBomb(true);
+
+	boardStringRepresentation = ("   a b c d e\n"
+								 "   - - - - -\n"
+								 "0 |?|?|?|?|?|\n"
+								 "   - - - - -\n"
+								 "1 |?|?|?|?|?|\n"
+								 "   - - - - -\n"
+								 "2 |?|?|?|?|?|\n"
+								 "   - - - - -\n"
+								 "3 |?|?|?|?|?|\n"
+								 "   - - - - -\n"
+								 "4 |?|?|?|?|?|\n"
+								 "   - - - - -\n");
+	QCOMPARE(_consoleBoard->stringRepresentation(),
+		boardStringRepresentation);
+
+	QCOMPARE(_consoleBoard->makeTurn("a0"), kSContinue);
+	boardStringRepresentation = ("   a b c d e\n"
+								 "   - - - - -\n"
+								 "0 | | | | | |\n"
+								 "   - - - - -\n"
+								 "1 | | | | | |\n"
+								 "   - - - - -\n"
+								 "2 | | | | | |\n"
+								 "   - - - - -\n"
+								 "3 | | | |1|1|\n"
+								 "   - - - - -\n"
+								 "4 | | | |1|?|\n"
+								 "   - - - - -\n");
+	QCOMPARE(_consoleBoard->stringRepresentation(),
+		boardStringRepresentation);
+
 }
 
 void ConsoleUITest::testConsoleMakeTurn()

@@ -62,7 +62,7 @@ SGameCondition SConsoleBoard::makeTurn(QString turnDescription)
 
 QString SConsoleBoard::stringRepresentation()
 {
-	QString result;
+	QString result = QString("");
 
 	if((_cells.value(0).count() > abc.length()) ||
 		(_cells.count() > 10))

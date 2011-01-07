@@ -13,7 +13,7 @@ public:
 	void setHasBomb(bool value);
 
 	bool checked();
-	void toggleChecked();
+	void setChecked(bool value);
 
 	bool flagged();
 	void toggleFlag();
