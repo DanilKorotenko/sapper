@@ -12,6 +12,9 @@ public:
 	explicit SConsoleBoard(QObject *parent = 0);
 	SConsoleBoard(quint8 width, quint8 height, QObject *parent = 0);
 
+	SGameCondition makeTurn(QString turnDescription);
+	SGameCondition makeTurn(quint8 indexX, quint8 indexY, bool setFlag);
+
 	QString stringRepresentation();
 
 protected:

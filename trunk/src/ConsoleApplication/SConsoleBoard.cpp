@@ -3,6 +3,8 @@
 #include "dataModel/scell.h"
 #include "SConsoleCell.h"
 
+static QString const abc = "abcdefghijklmnopqrstuvwxyz";
+
 SConsoleBoard::SConsoleBoard(QObject *parent) : SBoard(parent)
 {
 
@@ -14,10 +16,53 @@ SConsoleBoard::SConsoleBoard(quint8 width, quint8 height, QObject *parent) :
 
 }
 
+SGameCondition SConsoleBoard::makeTurn(quint8 indexX, quint8 indexY, bool setFlag)
+{
+	return SBoard::makeTurn(indexX, indexY, setFlag);
+}
+
+
+SGameCondition SConsoleBoard::makeTurn(QString turnDescription)
+{
+	//turnDescription is a string that contains a three or two characters:
+	//1st - letter - the x coordinate
+	//2nd - digit - the y coordinate
+	//[3rd] - 'f' place flag or no
+
+	SGameCondition result = kSContinue;
+
+	quint8 indexX = 0;
+	quint8 indexY = 0;
+	QChar firstCharacter = turnDescription.at(0);
+	QChar secondCharacter = turnDescription.at(1);
+
+	if (firstCharacter.isLetter())
+	{
+		indexY = abc.indexOf(firstCharacter);
+		if (indexY != -1)
+		{
+			if (secondCharacter.isDigit())
+			{
+				indexX = secondCharacter.digitValue();
+				if (3 == turnDescription.length())
+				{
+					result = SBoard::makeTurn(indexX, indexY, true);
+				}
+				else if (2 == turnDescription.length())
+				{
+					result = SBoard::makeTurn(indexX, indexY, false);
+				}
+			}
+		}
+	}
+
+	return result;
+}
+
+
 QString SConsoleBoard::stringRepresentation()
 {
 	QString result;
-	QString abc("abcdefghijklmnopqrstuvwxyz");
 
 	if((_cells.value(0).count() > abc.length()) ||
 		(_cells.count() > 10))
