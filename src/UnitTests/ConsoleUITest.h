@@ -22,6 +22,8 @@ private slots:
 	void testBoardDisplayingMissedFlag();
 	void testBoardDisplayingNumberOfBombs();
 
+	void testConsoleMakeTurn();
+
 	void cleanup();
 
 };
