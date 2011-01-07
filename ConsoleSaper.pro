@@ -16,10 +16,12 @@ SOURCES += ./src/ConsoleApplication/main.cpp \
     src/ConsoleApplication/SConsoleGame.cpp \
     src/ConsoleApplication/SConsoleBoard.cpp \
     src/dataModel/scell.cpp \
-    src/dataModel/sboard.cpp
+    src/dataModel/sboard.cpp \
+    src/ConsoleApplication/SConsoleCell.cpp
 
 HEADERS += \
     src/ConsoleApplication/SConsoleGame.h \
     src/ConsoleApplication/SConsoleBoard.h \
     src/dataModel/sboard.h \
-    src/dataModel/scell.h
+    src/dataModel/scell.h \
+    src/ConsoleApplication/SConsoleCell.h
