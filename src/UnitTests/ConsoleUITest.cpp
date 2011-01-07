@@ -2,7 +2,7 @@
 
 #include <QTest>
 
-#include "ConsoleApplication/SConsoleBoard.h"
+#include "ConsoleSapper/SConsoleBoard.h"
 #include "dataModel/scell.h"
 
 void ConsoleUITest::init()

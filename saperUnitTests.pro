@@ -15,8 +15,8 @@ HEADERS += 	src/UnitTests/dataModelTest.h \
 	src/saperboard.h \
 	src/dataModel/scell.h \
 	src/dataModel/sboard.h \
-	src/ConsoleApplication/SConsoleBoard.h \
-	src/ConsoleApplication/SConsoleCell.h
+	src/ConsoleSapper/SConsoleBoard.h \
+	src/ConsoleSapper/SConsoleCell.h
 
 SOURCES += src/UnitTests/dataModelTest.cpp \
 	src/UnitTests/ConsoleUITest.cpp \
@@ -26,6 +26,6 @@ SOURCES += src/UnitTests/dataModelTest.cpp \
 	src/saperboard.cpp \
 	src/dataModel/scell.cpp \
 	src/dataModel/sboard.cpp \
-	src/ConsoleApplication/SConsoleBoard.cpp \
+	src/ConsoleSapper/SConsoleBoard.cpp \
 	src/UnitTests/main.cpp \
-	src/ConsoleApplication/SConsoleCell.cpp
+	src/ConsoleSapper/SConsoleCell.cpp
