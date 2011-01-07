@@ -3,6 +3,7 @@
 #include "scell.h"
 
 #include <QPointer>
+#include <QDateTime>
 
 SBoard::SBoard(QObject *parent) : QObject(parent)
 {
@@ -113,6 +114,24 @@ bool SBoard::checkVictory()
 		}
 	}
 	return result;
+}
+
+void SBoard::placeBombs(quint8 numberOfBombs)
+{
+	qsrand(QDateTime::currentMSecsSinceEpoch());
+	quint8 sizeX = _cells.count();
+	quint8 sizeY = _cells.value(0).count();
+	for (quint8 bombIndex = 0; bombIndex < numberOfBombs; )
+	{
+		quint8 x = qrand() % sizeX;
+		quint8 y = qrand() % sizeY;
+		SCell *cell = _cells.value(x).value(y,NULL);
+		if ((cell != NULL) && (!cell->hasBomb()))
+		{
+			cell->setHasBomb(true);
+			bombIndex++;
+		}
+	}
 }
 
 SCell *SBoard::createCell()

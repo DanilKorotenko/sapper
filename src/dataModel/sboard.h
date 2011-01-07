@@ -38,6 +38,8 @@ public:
 
 	bool checkVictory();
 
+	void placeBombs(quint8 numberOfBombs);
+
 //TODO: must be protected
 	QVector<SCellVector> _cells;
 protected:
