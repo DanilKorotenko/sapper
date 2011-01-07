@@ -23,9 +23,9 @@ bool SCell::checked()
 	return _checked;
 }
 
-void SCell::toggleChecked()
+void SCell::setChecked(bool value)
 {
-	_checked = !_checked;
+	_checked = value;
 }
 
 bool SCell::flagged()

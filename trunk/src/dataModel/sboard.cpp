@@ -66,7 +66,9 @@ void SBoard::check(qint8 indexX, qint8 indexY)
 	{
 		return;
 	}
-	cell->toggleChecked();
+
+	cell->setChecked(true);
+
 	quint8 numberOfBombs = 0;
 	for(qint8 cellIndexX = indexX-1; cellIndexX <= indexX + 1; cellIndexX++)
 	{
@@ -85,10 +87,10 @@ void SBoard::check(qint8 indexX, qint8 indexY)
 
 	if (0 == numberOfBombs)
 	{
-		for(quint8 cellIndexX = indexX-1; cellIndexX <= indexX + 1;
+		for(qint8 cellIndexX = indexX-1; cellIndexX <= indexX + 1;
 			cellIndexX++)
 		{
-			for(quint8 cellIndexY = indexY-1; cellIndexY <= indexY + 1;
+			for(qint8 cellIndexY = indexY-1; cellIndexY <= indexY + 1;
 				cellIndexY++)
 			{
 				this->check(cellIndexX, cellIndexY);
