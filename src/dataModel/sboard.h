@@ -27,6 +27,7 @@ public:
 
 //service methods
 	void setSize(quint8 width, quint8 height);
+	QVector<SCellVector> cells() const;
 
 //game methods
 	SGameCondition makeTurn(quint8 indexX, quint8 indexY, bool setFlag);
@@ -40,12 +41,11 @@ public:
 
 	void placeBombs(quint8 numberOfBombs);
 
-//TODO: must be protected
-	QVector<SCellVector> _cells;
 protected:
 	SCell *createCell();
 
 	bool _gameOver;
+	QVector<SCellVector> _cells;
 
 private:
 	void clear();

@@ -34,6 +34,11 @@ void SBoard::setSize(quint8 width, quint8 height)
 	}
 }
 
+QVector<SCellVector> SBoard::cells() const
+{
+	return _cells;
+}
+
 SGameCondition SBoard::makeTurn(quint8 indexX, quint8 indexY, bool setFlag)
 {
 	SGameCondition result = kSContinue;
