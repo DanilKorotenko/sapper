@@ -31,6 +31,9 @@ public:
 
 private:
 	void playGame();
+	void printLicense();
+	void printWarranties();
+	void printConditions();
 
 };
 
