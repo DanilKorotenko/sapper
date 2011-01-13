@@ -33,7 +33,6 @@ int main(int argc, char **argv)
 	app.setApplicationName("ConsolaSaper");
 	app.setOrganizationName("DanilKorotenko");
 	app.setApplicationVersion("1.0.0");
-	std::cout << "Hello console saper\n";
 
 	SConsoleGame game;
 	game.execute();

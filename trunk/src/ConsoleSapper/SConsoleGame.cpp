@@ -29,8 +29,10 @@ SConsoleGame::SConsoleGame(QObject *parent) : QObject(parent)
 
 void SConsoleGame::execute()
 {
+	printLicense();
+
 //	std::cout<<"1. play new game" << std::endl;
-//	std::cout << std::endl;
+	std::cout << std::endl;
 
 //	std::cout<<"woul'd you like to do?" << std::endl;
 //	std::cout<<"enter a number of your choise:" << std::endl;
@@ -60,9 +62,21 @@ void SConsoleGame::playGame()
 	{
 		std::cout << board.stringRepresentation().toAscii().constData()
 			<< std::endl;
-		char playerTurn[3];
+		char playerTurn[6];
 		std::cin >> playerTurn;
-		gameCondition = board.makeTurn(QString(playerTurn));
+		QString turn = QString(playerTurn);
+		if (QString("show w") == turn)
+		{
+			printWarranties();
+		}
+		else if (QString("show c") == turn)
+		{
+			printConditions();
+		}
+		else
+		{
+			gameCondition = board.makeTurn(QString(playerTurn));
+		}
 	}
 	std::cout << board.stringRepresentation().toAscii().constData()
 		<< std::endl;
@@ -74,4 +88,24 @@ void SConsoleGame::playGame()
 	{
 		std::cout << "You are bombed. :(" << std::endl;
 	}
+}
+
+void SConsoleGame::printLicense()
+{
+	std::cout << "ConsoleSapper version 1.0.0." << std::endl;
+	std::cout << "Copyright (C) 2011 Korotenko Danil" << std::endl;
+	std::cout << std::endl;
+	std::cout << "ConsoleSapper comes with ABSOLUTELY NO WARRANTY;" << std::endl;
+	std::cout << "This is free software, and you are welcome to redistribute it" << std::endl;
+	std::cout << "under certain conditions;" << std::endl;
+}
+
+void SConsoleGame::printWarranties()
+{
+
+}
+
+void SConsoleGame::printConditions()
+{
+
 }
