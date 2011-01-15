@@ -25,6 +25,8 @@ INCLUDEPATH += ./src
 CONFIG += console
 CONFIG -= app_bundle
 
+VERSION = 1.0.1
+
 # Input
 SOURCES += ./src/ConsoleSapper/main.cpp \
 	src/ConsoleSapper/SConsoleGame.cpp \
@@ -40,4 +42,4 @@ HEADERS += src/ConsoleSapper/SConsoleGame.h \
 	src/ConsoleSapper/SConsoleCell.h
 
 RESOURCES += \
-    Resources/ConsoleSapperResources.qrc
+	Resources/ConsoleSapperResources.qrc
