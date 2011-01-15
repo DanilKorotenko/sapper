@@ -20,6 +20,7 @@
 #define SCONSOLEGAME_H
 
 #include <QObject>
+#include <QTextStream>
 
 class SConsoleGame : public QObject
 {
@@ -31,9 +32,16 @@ public:
 
 private:
 	void playGame();
+
+	void printInstructions();
+
 	void printLicense();
 	void printWarranties();
 	void printConditions();
+
+//	data
+	QTextStream _inStream;
+	QTextStream _outStream;
 
 };
 

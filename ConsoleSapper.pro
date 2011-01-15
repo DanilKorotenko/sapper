@@ -38,3 +38,6 @@ HEADERS += src/ConsoleSapper/SConsoleGame.h \
 	src/dataModel/sboard.h \
 	src/dataModel/scell.h \
 	src/ConsoleSapper/SConsoleCell.h
+
+RESOURCES += \
+    Resources/ConsoleSapperResources.qrc
