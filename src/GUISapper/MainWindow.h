@@ -28,6 +28,12 @@ class MainWindow : public QMainWindow
 public:
 	MainWindow(QWidget *parent = 0);
 	~MainWindow();
+
+private:
+	void createAndAddActions();
+
+private slots:
+
 };
 
 #endif // MAINWINDOW_H
