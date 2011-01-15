@@ -18,12 +18,24 @@
 
 #include "MainWindow.h"
 
-MainWindow::MainWindow(QWidget *parent)
-	: QMainWindow(parent)
+#include <QMenuBar>
+#include <QMenu>
+#include <QAction>
+#include <QApplication>
+
+MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent)
 {
+	this->createAndAddActions();
 }
 
 MainWindow::~MainWindow()
 {
 
 }
+
+void MainWindow::createAndAddActions()
+{
+	QMenu *helpMenu = menuBar()->addMenu(tr("Help"));
+	helpMenu->addAction(tr("About Qt..."),qApp,SLOT(aboutQt()));
+}
+
