@@ -1,0 +1,6 @@
+<RCC>
+    <qresource prefix="/license">
+        <file>warranties.txt</file>
+        <file>copying.txt</file>
+    </qresource>
+</RCC>

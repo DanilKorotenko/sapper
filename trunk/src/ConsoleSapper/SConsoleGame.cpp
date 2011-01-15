@@ -22,8 +22,12 @@
 
 #include <iostream>
 
+#include <QFile>
 
-SConsoleGame::SConsoleGame(QObject *parent) : QObject(parent)
+SConsoleGame::SConsoleGame(QObject *parent) :
+	QObject(parent),
+	_inStream(stdin),
+	_outStream(stdout)
 {
 }
 
@@ -31,11 +35,16 @@ void SConsoleGame::execute()
 {
 	printLicense();
 
-//	std::cout<<"1. play new game" << std::endl;
-	std::cout << std::endl;
+//	_outStream <<"1. play new game" << endl;
 
-//	std::cout<<"woul'd you like to do?" << std::endl;
-//	std::cout<<"enter a number of your choise:" << std::endl;
+	_outStream << endl;
+
+	printInstructions();
+
+	_outStream << endl;
+
+//	_outStream <<"woul'd you like to do?" << endl;
+//	_outStream <<"enter a number of your choise:" << endl;
 //	char ch = 0;
 //	std::cin >> ch;
 //	switch(ch)
@@ -60,52 +69,70 @@ void SConsoleGame::playGame()
 	board.placeBombs(5);
 	while(kSContinue == gameCondition)
 	{
-		std::cout << board.stringRepresentation().toAscii().constData()
-			<< std::endl;
-		char playerTurn[6];
-		std::cin >> playerTurn;
-		QString turn = QString(playerTurn);
-		if (QString("show w") == turn)
+		_outStream << board.stringRepresentation() << endl;
+		QString playerTurn = _inStream.readLine();
+		if (QString("show w") == playerTurn)
 		{
 			printWarranties();
 		}
-		else if (QString("show c") == turn)
+		else if (QString("show c") == playerTurn)
 		{
 			printConditions();
 		}
+		else if (QString("q") == playerTurn)
+		{
+			break;
+		}
 		else
 		{
-			gameCondition = board.makeTurn(QString(playerTurn));
+			gameCondition = board.makeTurn(playerTurn);
 		}
 	}
-	std::cout << board.stringRepresentation().toAscii().constData()
-		<< std::endl;
+	_outStream << board.stringRepresentation() << endl;
 	if (kSWinned == gameCondition)
 	{
-		std::cout << "You are winned! :)" << std::endl;
+		_outStream << "You are winned! :)" << endl;
 	}
 	else if (kSBombed == gameCondition)
 	{
-		std::cout << "You are bombed. :(" << std::endl;
+		_outStream << "You are bombed. :(" << endl;
 	}
+}
+
+void SConsoleGame::printInstructions()
+{
+	_outStream << "type 'q' to exit." << endl;
+
 }
 
 void SConsoleGame::printLicense()
 {
-	std::cout << "ConsoleSapper version 1.0.0." << std::endl;
-	std::cout << "Copyright (C) 2011 Korotenko Danil" << std::endl;
-	std::cout << std::endl;
-	std::cout << "ConsoleSapper comes with ABSOLUTELY NO WARRANTY;" << std::endl;
-	std::cout << "This is free software, and you are welcome to redistribute it" << std::endl;
-	std::cout << "under certain conditions;" << std::endl;
+	_outStream << "ConsoleSapper version 1.0.0." << endl;
+	_outStream << "Copyright (C) 2011 Korotenko Danil" << endl;
+	_outStream << endl;
+	_outStream << "ConsoleSapper comes with ABSOLUTELY NO WARRANTY; for details type `show w'." << endl;
+	_outStream << "This is free software, and you are welcome to redistribute it" << endl;
+	_outStream << "under certain conditions; type `show c' for details." << endl;
 }
 
 void SConsoleGame::printWarranties()
 {
+	QFile file(":/license/warranties.txt");
+	if (!file.open(QIODevice::ReadOnly | QIODevice::Text))
+	{
+		return;
+	}
 
+	_outStream << file.readAll();
 }
 
 void SConsoleGame::printConditions()
 {
+	QFile file(":/license/copying.txt");
+	if (!file.open(QIODevice::ReadOnly | QIODevice::Text))
+	{
+		return;
+	}
 
+	_outStream << file.readAll();
 }
