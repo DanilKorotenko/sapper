@@ -96,7 +96,7 @@ void ConsoleUITest::testBoardDisplayingGameOver()
 	QCOMPARE(_consoleBoard->stringRepresentation(),
 		boardStringRepresentation);
 
-	QCOMPARE(_consoleBoard->makeTurn(0,0,false), kSBombed);
+	QCOMPARE(_consoleBoard->makeTurn("a0"), kSBombed);
 
 	boardStringRepresentation = ("   a b\n"
 								 "   - -\n"
@@ -111,7 +111,7 @@ void ConsoleUITest::testBoardDisplayingGameOver()
 void ConsoleUITest::testBoardDisplayingWin()
 {
 	_consoleBoard->cells().value(0).value(0, NULL)->setHasBomb(true);
-	QCOMPARE(_consoleBoard->makeTurn(0,0,true), kSWinned);
+	QCOMPARE(_consoleBoard->makeTurn("a0f"), kSWinned);
 
 	QString boardStringRepresentation("   a b\n"
 								 "   - -\n"
@@ -126,7 +126,7 @@ void ConsoleUITest::testBoardDisplayingWin()
 void ConsoleUITest::testBoardDisplayingMissedFlag()
 {
 	_consoleBoard->cells().value(0).value(0, NULL)->setHasBomb(true);
-	QCOMPARE(_consoleBoard->makeTurn(0,1,true), kSContinue);
+	QCOMPARE(_consoleBoard->makeTurn("b0f"), kSContinue);
 
 	QString boardStringRepresentation("   a b\n"
 								 "   - -\n"
@@ -137,7 +137,7 @@ void ConsoleUITest::testBoardDisplayingMissedFlag()
 	QCOMPARE(_consoleBoard->stringRepresentation(),
 		boardStringRepresentation);
 
-	QCOMPARE(_consoleBoard->makeTurn(0,0,false), kSBombed);
+	QCOMPARE(_consoleBoard->makeTurn("a0"), kSBombed);
 
 	boardStringRepresentation = ("   a b\n"
 								 "   - -\n"
@@ -163,7 +163,7 @@ void ConsoleUITest::testBoardDisplayingNumberOfBombs()
 	QCOMPARE(_consoleBoard->stringRepresentation(),
 		boardStringRepresentation);
 
-	QCOMPARE(_consoleBoard->makeTurn(0,1,false), kSContinue);
+	QCOMPARE(_consoleBoard->makeTurn("b0"), kSContinue);
 	boardStringRepresentation = ("   a b\n"
 								 "   - -\n"
 								 "0 |?|1|\n"
