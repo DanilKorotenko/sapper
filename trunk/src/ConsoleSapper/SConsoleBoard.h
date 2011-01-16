@@ -21,8 +21,6 @@
 
 #include "dataModel/sboard.h"
 
-class SConsoleCell;
-
 class SConsoleBoard : public SBoard
 {
 	Q_OBJECT
@@ -31,7 +29,6 @@ public:
 	SConsoleBoard(quint8 width, quint8 height, QObject *parent = 0);
 
 	SGameCondition makeTurn(QString turnDescription);
-	SGameCondition makeTurn(quint8 indexX, quint8 indexY, bool setFlag);
 
 	QString stringRepresentation();
 
