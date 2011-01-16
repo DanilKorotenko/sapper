@@ -23,10 +23,6 @@ INCLUDEPATH += ./src
 # Input
 HEADERS += 	src/UnitTests/dataModelTest.h \
 	src/UnitTests/ConsoleUITest.h \
-	src/saper.h \
-	src/cell.h \
-	src/saperbutton.h \
-	src/saperboard.h \
 	src/dataModel/scell.h \
 	src/dataModel/sboard.h \
 	src/ConsoleSapper/SConsoleBoard.h \
@@ -34,10 +30,6 @@ HEADERS += 	src/UnitTests/dataModelTest.h \
 
 SOURCES += src/UnitTests/dataModelTest.cpp \
 	src/UnitTests/ConsoleUITest.cpp \
-	src/saper.cpp \
-	src/cell.cpp \
-	src/saperbutton.cpp \
-	src/saperboard.cpp \
 	src/dataModel/scell.cpp \
 	src/dataModel/sboard.cpp \
 	src/ConsoleSapper/SConsoleBoard.cpp \
