@@ -18,8 +18,33 @@
 
 #include "SGUIBoardController.h"
 
+#include <QGridLayout>
+#include <QButtonGroup>
+
+#include "SGUIBoard.h"
+#include "SGUIButton.h"
+
 SGUIBoardController::SGUIBoardController(QWidget *parent) : QWidget(parent)
 {
+	_gameBoard = new SGUIBoard(this);
+
+	QGridLayout *topLayout = new QGridLayout(this);
+
+	QSize size;
+	size.setWidth(5);
+	size.setHeight(5);
+
+	for (qint8 indexX = 0; indexX < size.width(); indexX++)
+	{
+		for (qint8 indexY = 0; indexY < size.height(); indexY++)
+		{
+			topLayout->addWidget(new SGUIButton(this),indexX,indexY);
+		}
+	}
+
+	topLayout->setHorizontalSpacing(0);
+	topLayout->setVerticalSpacing(0);
+	this->setLayout(topLayout);
 }
 
 void SGUIBoardController::slotNewGame()
