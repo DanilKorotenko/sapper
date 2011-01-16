@@ -21,6 +21,8 @@
 
 #include <QWidget>
 
+class SGUIBoard;
+
 class SGUIBoardController : public QWidget
 {
 	Q_OBJECT
@@ -29,6 +31,9 @@ public:
 
 public slots:
 	void slotNewGame();
+
+private:
+	SGUIBoard *_gameBoard;
 
 };
 
