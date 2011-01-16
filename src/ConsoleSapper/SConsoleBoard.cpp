@@ -34,12 +34,6 @@ SConsoleBoard::SConsoleBoard(quint8 width, quint8 height, QObject *parent) :
 
 }
 
-SGameCondition SConsoleBoard::makeTurn(quint8 indexX, quint8 indexY, bool setFlag)
-{
-	return SBoard::makeTurn(indexX, indexY, setFlag);
-}
-
-
 SGameCondition SConsoleBoard::makeTurn(QString turnDescription)
 {
 	//turnDescription is a string that contains a three or two characters:
@@ -73,10 +67,8 @@ SGameCondition SConsoleBoard::makeTurn(QString turnDescription)
 			}
 		}
 	}
-
 	return result;
 }
-
 
 QString SConsoleBoard::stringRepresentation()
 {
