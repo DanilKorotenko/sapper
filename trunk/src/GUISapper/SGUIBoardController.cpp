@@ -16,34 +16,13 @@
  Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 ********************************************************************/
 
-#ifndef MAINWINDOW_H
-#define MAINWINDOW_H
+#include "SGUIBoardController.h"
 
-#include <QtGui/QMainWindow>
-
-class SGUIBoardController;
-
-class MainWindow : public QMainWindow
+SGUIBoardController::SGUIBoardController(QWidget *parent) : QWidget(parent)
 {
-	Q_OBJECT
+}
 
-public:
-	MainWindow(QWidget *parent = 0);
-	~MainWindow();
+void SGUIBoardController::slotNewGame()
+{
 
-private:
-	void createAndAddActions();
-
-//data
-	SGUIBoardController *_boardController;
-
-private slots:
-	void slotNewGame();
-
-	void slotShowWarranties();
-	void slotShowCopying();
-
-	void slotAbout();
-};
-
-#endif // MAINWINDOW_H
+}

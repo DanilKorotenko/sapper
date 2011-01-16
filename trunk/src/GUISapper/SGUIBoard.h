@@ -19,16 +19,18 @@
 #ifndef SGUIBOARD_H
 #define SGUIBOARD_H
 
-#include <QWidget>
+#include "dataModel/sboard.h"
 
-class SGUIBoard : public QWidget
+class SGUIBoard : public SBoard
 {
 	Q_OBJECT
 public:
-	explicit SGUIBoard(QWidget *parent = 0);
+	explicit SGUIBoard(QObject *parent = 0);
+	SGUIBoard(quint8 width, quint8 height, QObject *parent = 0);
 
-public slots:
-	void slotNewGame();
+protected:
+	SCell *createCell();
+
 };
 
 #endif // SGUIBOARD_H

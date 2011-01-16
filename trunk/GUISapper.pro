@@ -16,7 +16,7 @@
 # Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 ######################################################################
 
-QT       += core gui
+QT += core gui
 
 TARGET = GUISapper
 TEMPLATE = app
@@ -25,12 +25,20 @@ INCLUDEPATH += src
 
 SOURCES += src/GUISapper/main.cpp\
 	src/GUISapper/MainWindow.cpp \
-	src/GUISapper/SGUIBoard.cpp \
-    src/GUISapper/SGUIButton.cpp
+	src/GUISapper/SGUIButton.cpp \
+	src/GUISapper/SGUIBoardController.cpp \
+    src/GUISapper/SGUIBoard.cpp \
+    src/dataModel/scell.cpp \
+    src/dataModel/sboard.cpp \
+    src/GUISapper/SGUICell.cpp
 
 HEADERS  += src/GUISapper/MainWindow.h \
-	src/GUISapper/SGUIBoard.h \
-    src/GUISapper/SGUIButton.h
+	src/GUISapper/SGUIButton.h \
+	src/GUISapper/SGUIBoardController.h \
+    src/GUISapper/SGUIBoard.h \
+    src/dataModel/scell.h \
+    src/dataModel/sboard.h \
+    src/GUISapper/SGUICell.h
 
 RESOURCES += \
-    Resources/GUISapperResources.qrc
+	Resources/GUISapperResources.qrc

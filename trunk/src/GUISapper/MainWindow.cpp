@@ -26,14 +26,14 @@
 #include <QMessageBox>
 #include <QFile>
 
-#include "SGUIBoard.h"
+#include "SGUIBoardController.h"
 
 MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent)
 {
 	this->createAndAddActions();
 
-	_gameBoard = new SGUIBoard(this);
-	this->setCentralWidget(_gameBoard);
+	_boardController = new SGUIBoardController(this);
+	this->setCentralWidget(_boardController);
 }
 
 MainWindow::~MainWindow()
@@ -43,14 +43,14 @@ MainWindow::~MainWindow()
 
 void MainWindow::createAndAddActions()
 {
+// File menu
 	QMenu *fileMenu = menuBar()->addMenu(tr("File"));
-
 	fileMenu->addAction(tr("New Game"), this, SLOT(slotNewGame()),
 		QKeySequence(QKeySequence::New));
-
 	fileMenu->addAction(tr("Exit"), qApp, SLOT(quit()),
 		QKeySequence(Qt::Key_Escape));
 
+//Help menu
 	QMenu *helpMenu = menuBar()->addMenu(tr("Help"));
 	helpMenu->addSeparator();
 	helpMenu->addAction(tr("Show warranties"), this,
@@ -63,7 +63,7 @@ void MainWindow::createAndAddActions()
 
 void MainWindow::slotNewGame()
 {
-	_gameBoard->slotNewGame();
+	_boardController->slotNewGame();
 }
 
 void MainWindow::slotShowWarranties()

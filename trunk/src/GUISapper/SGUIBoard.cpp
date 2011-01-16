@@ -17,13 +17,20 @@
 ********************************************************************/
 
 #include "SGUIBoard.h"
+#include "SGUICell.h"
 
-SGUIBoard::SGUIBoard(QWidget *parent) : QWidget(parent)
+SGUIBoard::SGUIBoard(QObject *parent) : SBoard(parent)
 {
 
 }
 
-void SGUIBoard::slotNewGame()
+SGUIBoard::SGUIBoard(quint8 width, quint8 height, QObject *parent) :
+	SBoard(width, height, parent)
 {
 
+}
+
+SCell *SGUIBoard::createCell()
+{
+	return new SGUICell();
 }
