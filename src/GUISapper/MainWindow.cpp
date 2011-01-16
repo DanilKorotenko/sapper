@@ -22,10 +22,18 @@
 #include <QMenu>
 #include <QAction>
 #include <QApplication>
+#include <QKeySequence>
+#include <QMessageBox>
+#include <QFile>
+
+#include "SGUIBoard.h"
 
 MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent)
 {
 	this->createAndAddActions();
+
+	_gameBoard = new SGUIBoard(this);
+	this->setCentralWidget(_gameBoard);
 }
 
 MainWindow::~MainWindow()
@@ -35,7 +43,63 @@ MainWindow::~MainWindow()
 
 void MainWindow::createAndAddActions()
 {
+	QMenu *fileMenu = menuBar()->addMenu(tr("File"));
+
+	fileMenu->addAction(tr("New Game"), this, SLOT(slotNewGame()),
+		QKeySequence(QKeySequence::New));
+
+	fileMenu->addAction(tr("Exit"), qApp, SLOT(quit()),
+		QKeySequence(Qt::Key_Escape));
+
 	QMenu *helpMenu = menuBar()->addMenu(tr("Help"));
-	helpMenu->addAction(tr("About Qt..."),qApp,SLOT(aboutQt()));
+	helpMenu->addSeparator();
+	helpMenu->addAction(tr("Show warranties"), this,
+		SLOT(slotShowWarranties()));
+	helpMenu->addAction(tr("Show copying"), this, SLOT(slotShowCopying()));
+	helpMenu->addSeparator();
+	helpMenu->addAction(tr("About Qt..."), qApp, SLOT(aboutQt()));
+	helpMenu->addAction(tr("About GUISapper..."), this, SLOT(slotAbout()));
 }
 
+void MainWindow::slotNewGame()
+{
+	_gameBoard->slotNewGame();
+}
+
+void MainWindow::slotShowWarranties()
+{
+	QFile file(":/license/warranties.txt");
+	if (!file.open(QIODevice::ReadOnly | QIODevice::Text))
+	{
+		return;
+	}
+
+	QByteArray fileContent = file.readAll();
+	QMessageBox::information(this,qApp->applicationName(),QString(fileContent),
+		QMessageBox::Ok);
+}
+
+void MainWindow::slotShowCopying()
+{
+	QFile file(":/license/copying.txt");
+	if (!file.open(QIODevice::ReadOnly | QIODevice::Text))
+	{
+		return;
+	}
+
+	QByteArray fileContent = file.readAll();
+	QMessageBox::information(this,qApp->applicationName(),QString(fileContent),
+		QMessageBox::Ok);
+}
+
+void MainWindow::slotAbout()
+{
+	QMessageBox::about(this, qApp->applicationName(),
+		QString("%1 version %2.\n"
+				"Copyright (C) 2011 Korotenko Danil\n\n"
+				"%3 comes with ABSOLUTELY NO WARRANTY; for details choose `Help -> show warranties...'.\n"
+				"This is free software, and you are welcome to redistribute it\n"
+				"under certain conditions; choose `Help -> show copying...' for details.")
+				.arg(qApp->applicationName()).arg(qApp->applicationVersion())
+				.arg(qApp->applicationName()));
+}
