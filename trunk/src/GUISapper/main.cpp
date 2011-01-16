@@ -22,6 +22,11 @@
 int main(int argc, char *argv[])
 {
 	QApplication a(argc, argv);
+
+	a.setApplicationName("GUISapper");
+	a.setApplicationVersion("1.0.0");
+	a.setOrganizationName("Korotenko Danil");
+
 	MainWindow w;
 	w.show();
 

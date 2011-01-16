@@ -21,8 +21,16 @@ QT       += core gui
 TARGET = GUISapper
 TEMPLATE = app
 
+INCLUDEPATH += src
 
 SOURCES += src/GUISapper/main.cpp\
-	src/GUISapper/MainWindow.cpp
+	src/GUISapper/MainWindow.cpp \
+	src/GUISapper/SGUIBoard.cpp \
+    src/GUISapper/SGUIButton.cpp
 
-HEADERS  += src/GUISapper/MainWindow.h
+HEADERS  += src/GUISapper/MainWindow.h \
+	src/GUISapper/SGUIBoard.h \
+    src/GUISapper/SGUIButton.h
+
+RESOURCES += \
+    Resources/GUISapperResources.qrc

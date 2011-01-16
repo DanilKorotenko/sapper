@@ -16,34 +16,21 @@
  Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 ********************************************************************/
 
-#ifndef MAINWINDOW_H
-#define MAINWINDOW_H
+#ifndef SGUIBUTTON_H
+#define SGUIBUTTON_H
 
-#include <QtGui/QMainWindow>
+#include <QPushButton>
 
-class SGUIBoard;
-
-class MainWindow : public QMainWindow
+class SGUIButton : public QPushButton
 {
 	Q_OBJECT
-
 public:
-	MainWindow(QWidget *parent = 0);
-	~MainWindow();
+	explicit SGUIButton(QWidget *parent = 0);
 
-private:
-	void createAndAddActions();
+signals:
 
-//data
-	SGUIBoard *_gameBoard;
+public slots:
 
-private slots:
-	void slotNewGame();
-
-	void slotShowWarranties();
-	void slotShowCopying();
-
-	void slotAbout();
 };
 
-#endif // MAINWINDOW_H
+#endif // SGUIBUTTON_H
