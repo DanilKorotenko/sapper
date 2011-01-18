@@ -39,16 +39,17 @@ class SBoard : public QObject
 public:
 //Constructor/Destructor
 	explicit SBoard(QObject *parent = 0);
-	SBoard(quint8 width, quint8 height, QObject *parent = 0);
+	SBoard(unsigned int width, unsigned int height, QObject *parent = 0);
 
 	~SBoard();
 
 //service methods
-	void setSize(quint8 width, quint8 height);
+	void setSize(unsigned int width, unsigned int height);
 	QVector<SCellVector> cells() const;
 
 //game methods
-	SGameCondition makeTurn(quint8 indexX, quint8 indexY, bool setFlag);
+	SGameCondition makeTurn(unsigned int indexX, unsigned int indexY,
+		bool setFlag);
 
 	// Starts the checking of board from the specified cell.
 	// Set to neighbours cells status checked and numbers of bombs around.
@@ -57,7 +58,7 @@ public:
 
 	bool checkVictory();
 
-	void placeBombs(quint8 numberOfBombs);
+	void placeBombs(unsigned int numberOfBombs);
 
 protected:
 	SCell *createCell();

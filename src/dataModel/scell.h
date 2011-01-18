@@ -36,14 +36,14 @@ public:
 	bool flagged();
 	void toggleFlag();
 
-	quint8 numberOfBombs();
-	void setNumberOfBombsArround(quint8 value);
+	unsigned int numberOfBombs();
+	void setNumberOfBombsArround(unsigned int value);
 
 private:
 	bool _hasBomb;
 	bool _checked;
 	bool _flagged;
-	qint8 _numberOfBombs;
+	unsigned int _numberOfBombs;
 
 };
 

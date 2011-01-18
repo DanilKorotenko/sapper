@@ -28,8 +28,8 @@ SConsoleBoard::SConsoleBoard(QObject *parent) : SBoard(parent)
 
 }
 
-SConsoleBoard::SConsoleBoard(quint8 width, quint8 height, QObject *parent) :
-	SBoard(width, height, parent)
+SConsoleBoard::SConsoleBoard(unsigned int width, unsigned int height,
+	QObject *parent) : SBoard(width, height, parent)
 {
 
 }
@@ -43,8 +43,8 @@ SGameCondition SConsoleBoard::makeTurn(QString turnDescription)
 
 	SGameCondition result = kSContinue;
 
-	quint8 indexX = 0;
-	quint8 indexY = 0;
+	int indexX = 0;
+	int indexY = 0;
 	QChar firstCharacter = turnDescription.at(0);
 	QChar secondCharacter = turnDescription.at(1);
 
@@ -83,12 +83,12 @@ QString SConsoleBoard::stringRepresentation()
 	{
 		//print ' a b c'
 		result.append("  ");
-		for (quint8 xSize = 0; xSize < _cells.value(0).count(); xSize++)
+		for (int xSize = 0; xSize < _cells.value(0).count(); xSize++)
 		{
 			result.append(QString(" %1").arg(abc.at(xSize)));
 		}
 		result.append("\n");
-		quint8 cellNumber = 0;
+		unsigned int cellNumber = 0;
 		for (QVector<SCellVector>::const_iterator iteratorX = _cells.begin();
 			iteratorX != _cells.end(); iteratorX++)
 		{
@@ -113,7 +113,7 @@ QString SConsoleBoard::stringRepresentation()
 		}
 		//print ' - - - -'
 		result.append("  ");
-		for (quint8 xSize = 0; xSize < _cells.value(0).count(); xSize++)
+		for (int xSize = 0; xSize < _cells.value(0).count(); xSize++)
 		{
 			result.append(" -");
 		}

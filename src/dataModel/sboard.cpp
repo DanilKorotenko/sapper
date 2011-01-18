@@ -20,14 +20,14 @@
 
 #include "scell.h"
 
-#include <QPointer>
-#include <QDateTime>
+#include <time.h>
 
 SBoard::SBoard(QObject *parent) : QObject(parent)
 {
 }
 
-SBoard::SBoard(quint8 width, quint8 height, QObject *parent) : QObject(parent)
+SBoard::SBoard(unsigned int width, unsigned int height, QObject *parent) :
+	QObject(parent)
 {
 	this->setSize(width, height);
 }
@@ -37,15 +37,15 @@ SBoard::~SBoard()
 	this->clear();
 }
 
-void SBoard::setSize(quint8 width, quint8 height)
+void SBoard::setSize(unsigned int width, unsigned int height)
 {
 	this->clear();
-	for (quint8 indexX = 0; indexX < height; indexX++)
+	for (unsigned int indexX = 0; indexX < height; indexX++)
 	{
 		SCellVector cellsVector;
-		for (quint8 indexY = 0; indexY < width; indexY++)
+		for (unsigned int indexY = 0; indexY < width; indexY++)
 		{
-			QPointer<SCell> cell = this->createCell();
+			SCell *cell = this->createCell();
 			cellsVector.push_back(cell);
 		}
 		_cells.push_back(cellsVector);
@@ -57,7 +57,8 @@ QVector<SCellVector> SBoard::cells() const
 	return _cells;
 }
 
-SGameCondition SBoard::makeTurn(quint8 indexX, quint8 indexY, bool setFlag)
+SGameCondition SBoard::makeTurn(unsigned int indexX, unsigned int indexY,
+	bool setFlag)
 {
 	SGameCondition result = kSContinue;
 	SCell *cell = _cells.at(indexX).at(indexY);
@@ -92,7 +93,7 @@ void SBoard::check(qint8 indexX, qint8 indexY)
 
 	cell->setChecked(true);
 
-	quint8 numberOfBombs = 0;
+	unsigned int numberOfBombs = 0;
 	for(qint8 cellIndexX = indexX-1; cellIndexX <= indexX + 1; cellIndexX++)
 	{
 		for(qint8 cellIndexY = indexY-1; cellIndexY <= indexY + 1;
@@ -141,15 +142,15 @@ bool SBoard::checkVictory()
 	return result;
 }
 
-void SBoard::placeBombs(quint8 numberOfBombs)
+void SBoard::placeBombs(unsigned int numberOfBombs)
 {
-	qsrand(QDateTime::currentMSecsSinceEpoch());
-	quint8 sizeX = _cells.count();
-	quint8 sizeY = _cells.value(0).count();
-	for (quint8 bombIndex = 0; bombIndex < numberOfBombs; )
+	srand(time(NULL));
+	unsigned int sizeX = _cells.count();
+	unsigned int sizeY = _cells.value(0).count();
+	for (unsigned int bombIndex = 0; bombIndex < numberOfBombs; )
 	{
-		quint8 x = qrand() % sizeX;
-		quint8 y = qrand() % sizeY;
+		unsigned int x = rand() % sizeX;
+		unsigned int y = rand() % sizeY;
 		SCell *cell = _cells.value(x).value(y,NULL);
 		if ((cell != NULL) && (!cell->hasBomb()))
 		{
