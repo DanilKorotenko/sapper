@@ -139,24 +139,19 @@ void DataModelTest::testCellsChecking()
 	_board->cells().value(0).value(0, NULL)->setHasBomb(true);
 	QCOMPARE(_board->makeTurn(0,1,false), kSContinue);
 
-	QCOMPARE(_board->cells().value(0).value(1, NULL)->numberOfBombs(),
-		(quint8)1);
+	QVERIFY(_board->cells().value(0).value(1, NULL)->numberOfBombs() == 1);
 	QCOMPARE(_board->cells().value(0).value(1, NULL)->checked(), true);
-	QCOMPARE(_board->cells().value(1).value(1, NULL)->numberOfBombs(),
-		(quint8)0);
+	QVERIFY(_board->cells().value(1).value(1, NULL)->numberOfBombs() == 0);
 	QCOMPARE(_board->cells().value(1).value(1, NULL)->checked(), false);
-	QCOMPARE(_board->cells().value(1).value(0, NULL)->numberOfBombs(),
-		(quint8)0);
+	QVERIFY(_board->cells().value(1).value(0, NULL)->numberOfBombs() == 0);
 	QCOMPARE(_board->cells().value(1).value(0, NULL)->checked(), false);
 
 	QCOMPARE(_board->makeTurn(1,1,false), kSContinue);
-	QCOMPARE(_board->cells().value(1).value(1, NULL)->numberOfBombs(),
-		(quint8)1);
+	QVERIFY(_board->cells().value(1).value(1, NULL)->numberOfBombs() == 1);
 	QCOMPARE(_board->cells().value(1).value(1, NULL)->checked(), true);
 
 	QCOMPARE(_board->makeTurn(1,0,false), kSContinue);
-	QCOMPARE(_board->cells().value(1).value(0, NULL)->numberOfBombs(),
-		(quint8)1);
+	QVERIFY(_board->cells().value(1).value(0, NULL)->numberOfBombs() == 1);
 	QCOMPARE(_board->cells().value(1).value(0, NULL)->checked(), true);
 
 	QCOMPARE(_board->makeTurn(0,0,true), kSWinned);
@@ -183,7 +178,7 @@ void DataModelTest::verifyInitialState()
 			QCOMPARE((*iteratorY)->hasBomb(), false);
 			QCOMPARE((*iteratorY)->checked(), false);
 			QCOMPARE((*iteratorY)->flagged(), false);
-			QCOMPARE((*iteratorY)->numberOfBombs(), (quint8)0);
+			QVERIFY((*iteratorY)->numberOfBombs() == 0);
 		}
 	}
 }
