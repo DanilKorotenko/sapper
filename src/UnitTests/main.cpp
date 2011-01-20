@@ -26,8 +26,8 @@ int main(int argc, char ** argv)
 	DataModelTest dataModelTests;
 	QTest::qExec(&dataModelTests, argc, argv);
 
-	ConsoleUITest consoleUITests;
-	QTest::qExec(&consoleUITests, argc, argv);
+//	ConsoleUITest consoleUITests;
+//	QTest::qExec(&consoleUITests, argc, argv);
 
 	return 0;
 }

@@ -28,7 +28,7 @@ SConsoleBoard::SConsoleBoard(QObject *parent) : SBoard(parent)
 
 }
 
-SConsoleBoard::SConsoleBoard(unsigned int width, unsigned int height,
+SConsoleBoard::SConsoleBoard(uint width, uint height,
 	QObject *parent) : SBoard(width, height, parent)
 {
 
@@ -74,8 +74,7 @@ QString SConsoleBoard::stringRepresentation()
 {
 	QString result = QString("");
 
-	if((_cells.value(0).count() > abc.length()) ||
-		(_cells.count() > 10))
+	if((sizeX() > abc.length()) || (sizeX() > 10))
 	{
 		result.append("The board cannot be printed.\n");
 	}
@@ -83,37 +82,35 @@ QString SConsoleBoard::stringRepresentation()
 	{
 		//print ' a b c'
 		result.append("  ");
-		for (int xSize = 0; xSize < _cells.value(0).count(); xSize++)
+		for (uint xSize = 0; xSize < sizeY(); xSize++)
 		{
 			result.append(QString(" %1").arg(abc.at(xSize)));
 		}
 		result.append("\n");
-		unsigned int cellNumber = 0;
-		for (QVector<SCellVector>::const_iterator iteratorX = _cells.begin();
-			iteratorX != _cells.end(); iteratorX++)
+		uint cellNumber = 0;
+		for (uint indexX = 0; indexX < sizeX(); indexX++)
 		{
 			//print '  - - - -'
 			result.append("  ");
-			for (SCellVector::const_iterator iteratorY = (*iteratorX).begin();
-				iteratorY != (*iteratorX).end(); iteratorY++)
+			for (uint indexY = 0; indexY < sizeY(); indexY++)
 			{
 				result.append(" -");
 			}
 			result.append("\n");
 			result.append(QString("%1 ").arg(cellNumber));
 			cellNumber++;
-			for (SCellVector::const_iterator iteratorY = (*iteratorX).begin();
-				iteratorY != (*iteratorX).end(); iteratorY++)
+			for (uint indexY = 0; indexY < sizeY(); indexY++)
 			{
 				result.append("|");
-				SConsoleCell *consoleCell = (SConsoleCell *)(*iteratorY);
+				SConsoleCell *consoleCell =
+					(SConsoleCell *)getCell(indexX, indexY);
 				result.append(consoleCell->stringRepresentation(_gameOver));
 			}
 			result.append("|\n");
 		}
 		//print ' - - - -'
 		result.append("  ");
-		for (int xSize = 0; xSize < _cells.value(0).count(); xSize++)
+		for (uint xSize = 0; xSize < sizeX(); xSize++)
 		{
 			result.append(" -");
 		}
