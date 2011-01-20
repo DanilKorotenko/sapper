@@ -22,9 +22,11 @@
 #include <QObject>
 #include <QVector>
 
+#include <stdlib.h>
+
 class SCell;
 
-typedef QVector<SCell *> SCellVector;
+typedef std::vector<SCell *> SCellVector;
 
 enum SGameCondition
 {
@@ -39,17 +41,18 @@ class SBoard : public QObject
 public:
 //Constructor/Destructor
 	explicit SBoard(QObject *parent = 0);
-	SBoard(unsigned int width, unsigned int height, QObject *parent = 0);
+	SBoard(uint width, uint height, QObject *parent = 0);
 
 	~SBoard();
 
 //service methods
-	void setSize(unsigned int width, unsigned int height);
-	QVector<SCellVector> cells() const;
+	void setSize(uint width, uint height);
+	uint sizeX();
+	uint sizeY();
+	SCell *getCell(uint indexX, uint indexY);
 
 //game methods
-	SGameCondition makeTurn(unsigned int indexX, unsigned int indexY,
-		bool setFlag);
+	SGameCondition makeTurn(uint indexX, uint indexY, bool setFlag);
 
 	// Starts the checking of board from the specified cell.
 	// Set to neighbours cells status checked and numbers of bombs around.
@@ -58,17 +61,17 @@ public:
 
 	bool checkVictory();
 
-	void placeBombs(unsigned int numberOfBombs);
+	void placeBombs(uint numberOfBombs);
 
 protected:
 	SCell *createCell();
 
 	bool _gameOver;
-	QVector<SCellVector> _cells;
-
 private:
 	void clear();
 
+//data
+	std::vector<SCellVector> _cells;
 };
 
 #endif // SBOARD_H

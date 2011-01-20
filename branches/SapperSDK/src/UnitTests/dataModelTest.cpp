@@ -48,15 +48,8 @@ void DataModelTest::testBoardCreation()
 void DataModelTest::testBoardResizing()
 {
 	_board->setSize(8,8);
-	QCOMPARE(_board->cells().count(), 8);
-
-	//test the board has specified size
-	for (QVector<SCellVector>::const_iterator iteratorX =
-		_board->cells().begin(); iteratorX != _board->cells().end();
-		iteratorX++)
-	{
-		QCOMPARE((*iteratorX).count(), 8);
-	}
+	QVERIFY(_board->sizeX() == 8);
+	QVERIFY(_board->sizeY() == 8);
 
 	//test the board has correct initial state after creation.
 	this->verifyInitialState();
@@ -66,7 +59,7 @@ void DataModelTest::testBoardResizing()
 
 void DataModelTest::testMarkUnMark()
 {
-	SCell *cell = _board->cells().value(0).value(0, NULL);
+	SCell *cell = _board->getCell(0, 0);
 
 	cell->setHasBomb(true);
 	QCOMPARE(cell->hasBomb(), true);
@@ -87,13 +80,13 @@ void DataModelTest::testCheckVictory()
 // | |*|
 //  - -
 
-	_board->cells().value(0).value(0, NULL)->setHasBomb(true);
+	_board->getCell(0, 0)->setHasBomb(true);
 	QCOMPARE(_board->checkVictory(), false);
-	_board->cells().value(1).value(1, NULL)->setHasBomb(true);
+	_board->getCell(1, 1)->setHasBomb(true);
 	QCOMPARE(_board->checkVictory(), false);
-	_board->cells().value(0).value(0, NULL)->toggleFlag();
+	_board->getCell(0, 0)->toggleFlag();
 	QCOMPARE(_board->checkVictory(), false);
-	_board->cells().value(1).value(1, NULL)->toggleFlag();
+	_board->getCell(1, 1)->toggleFlag();
 	QCOMPARE(_board->checkVictory(), true);
 }
 
@@ -104,7 +97,7 @@ void DataModelTest::testMakeWinnerTurn()
 //  - -
 // | | |
 //  - -
-	_board->cells().value(0).value(0, NULL)->setHasBomb(true);
+	_board->getCell(0, 0)->setHasBomb(true);
 	QCOMPARE(_board->makeTurn(0,0,true), kSWinned);
 
 	//TODO: when the game condition become 'winned' there are no other turns
@@ -120,7 +113,7 @@ void DataModelTest::testGameOverTurn()
 //  - -
 // | | |
 //  - -
-	_board->cells().value(0).value(0, NULL)->setHasBomb(true);
+	_board->getCell(0, 0)->setHasBomb(true);
 	QCOMPARE(_board->makeTurn(0,0,false), kSBombed);
 
 	//TODO: when the game condition become 'winned' there are no other turns
@@ -136,23 +129,23 @@ void DataModelTest::testCellsChecking()
 //  - -
 // | | |
 //  - -
-	_board->cells().value(0).value(0, NULL)->setHasBomb(true);
+	_board->getCell(0, 0)->setHasBomb(true);
 	QCOMPARE(_board->makeTurn(0,1,false), kSContinue);
 
-	QVERIFY(_board->cells().value(0).value(1, NULL)->numberOfBombs() == 1);
-	QCOMPARE(_board->cells().value(0).value(1, NULL)->checked(), true);
-	QVERIFY(_board->cells().value(1).value(1, NULL)->numberOfBombs() == 0);
-	QCOMPARE(_board->cells().value(1).value(1, NULL)->checked(), false);
-	QVERIFY(_board->cells().value(1).value(0, NULL)->numberOfBombs() == 0);
-	QCOMPARE(_board->cells().value(1).value(0, NULL)->checked(), false);
+	QVERIFY(_board->getCell(0, 1)->numberOfBombs() == 1);
+	QCOMPARE(_board->getCell(0, 1)->checked(), true);
+	QVERIFY(_board->getCell(1, 1)->numberOfBombs() == 0);
+	QCOMPARE(_board->getCell(1, 1)->checked(), false);
+	QVERIFY(_board->getCell(1, 0)->numberOfBombs() == 0);
+	QCOMPARE(_board->getCell(1, 0)->checked(), false);
 
 	QCOMPARE(_board->makeTurn(1,1,false), kSContinue);
-	QVERIFY(_board->cells().value(1).value(1, NULL)->numberOfBombs() == 1);
-	QCOMPARE(_board->cells().value(1).value(1, NULL)->checked(), true);
+	QVERIFY(_board->getCell(1, 1)->numberOfBombs() == 1);
+	QCOMPARE(_board->getCell(1, 1)->checked(), true);
 
 	QCOMPARE(_board->makeTurn(1,0,false), kSContinue);
-	QVERIFY(_board->cells().value(1).value(0, NULL)->numberOfBombs() == 1);
-	QCOMPARE(_board->cells().value(1).value(0, NULL)->checked(), true);
+	QVERIFY(_board->getCell(1, 0)->numberOfBombs() == 1);
+	QCOMPARE(_board->getCell(1, 0)->checked(), true);
 
 	QCOMPARE(_board->makeTurn(0,0,true), kSWinned);
 }
@@ -168,17 +161,15 @@ void DataModelTest::verifyInitialState()
 {
 	//Verify initial state
 	//test if we have access to all cells, and all cells has correct state.
-	for (QVector<SCellVector>::const_iterator iteratorX =
-		_board->cells().begin(); iteratorX != _board->cells().end();
-		iteratorX++)
+	for (uint indexX = 0; indexX != _board->sizeX(); indexX++)
 	{
-		for (SCellVector::const_iterator iteratorY = (*iteratorX).begin();
-			iteratorY != (*iteratorX).end(); iteratorY++)
+		for (uint indexY = 0; indexY != _board->sizeY(); indexY++)
 		{
-			QCOMPARE((*iteratorY)->hasBomb(), false);
-			QCOMPARE((*iteratorY)->checked(), false);
-			QCOMPARE((*iteratorY)->flagged(), false);
-			QVERIFY((*iteratorY)->numberOfBombs() == 0);
+			SCell *cell = _board->getCell(indexX, indexY);
+			QCOMPARE(cell->hasBomb(), false);
+			QCOMPARE(cell->checked(), false);
+			QCOMPARE(cell->flagged(), false);
+			QVERIFY(cell->numberOfBombs() == 0);
 		}
 	}
 }

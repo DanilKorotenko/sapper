@@ -56,12 +56,12 @@ void SCell::toggleFlag()
 	_flagged = !_flagged;
 }
 
-unsigned int SCell::numberOfBombs()
+uint SCell::numberOfBombs()
 {
 	return _numberOfBombs;
 }
 
-void SCell::setNumberOfBombsArround(unsigned int value)
+void SCell::setNumberOfBombsArround(uint value)
 {
 	_numberOfBombs = value;
 }
