@@ -32,7 +32,7 @@ void ConsoleUITest::init()
 // | | |
 //  - -
 
-	_consoleBoard = new SConsoleBoard(2,2);
+	_consoleBoard = new SConsoleBoard(2, 2);
 
 	QVERIFY(!_consoleBoard.isNull());
 }
@@ -48,7 +48,7 @@ void ConsoleUITest::testBoardDisplaying()
 	QCOMPARE(_consoleBoard->stringRepresentation(),
 		boardStringRepresentation);
 
-	_consoleBoard->setSize(3,2);
+	_consoleBoard->setSize(3, 2);
 	boardStringRepresentation = ("   a b c\n"
 								 "   - - -\n"
 								 "0 |?|?|?|\n"
@@ -58,7 +58,7 @@ void ConsoleUITest::testBoardDisplaying()
 	QCOMPARE(_consoleBoard->stringRepresentation(),
 		boardStringRepresentation);
 
-	_consoleBoard->setSize(2,3);
+	_consoleBoard->setSize(2, 3);
 	boardStringRepresentation = ("   a b\n"
 								 "   - -\n"
 								 "0 |?|?|\n"
@@ -74,10 +74,10 @@ void ConsoleUITest::testBoardDisplaying()
 void ConsoleUITest::testBigBoardDisplaying()
 {
 	QString boardStringRepresentation("The board cannot be printed.\n");
-	_consoleBoard->setSize(27,2);
+	_consoleBoard->setSize(27, 2);
 	QCOMPARE(_consoleBoard->stringRepresentation(),
 		boardStringRepresentation);
-	_consoleBoard->setSize(2,11);
+	_consoleBoard->setSize(2, 11);
 	QCOMPARE(_consoleBoard->stringRepresentation(),
 		boardStringRepresentation);
 }
@@ -173,7 +173,7 @@ void ConsoleUITest::testBoardDisplayingNumberOfBombs()
 	QCOMPARE(_consoleBoard->stringRepresentation(),
 		boardStringRepresentation);
 
-	_consoleBoard->setSize(3,3);
+	_consoleBoard->setSize(3, 3);
 	boardStringRepresentation = ("   a b c\n"
 								 "   - - -\n"
 								 "0 |?|?|?|\n"
@@ -185,12 +185,11 @@ void ConsoleUITest::testBoardDisplayingNumberOfBombs()
 	QCOMPARE(_consoleBoard->stringRepresentation(),
 		boardStringRepresentation);
 	_consoleBoard->getCell(0, 0)->setHasBomb(true);
-	_consoleBoard->getCell(1, 0)->setHasBomb(true);
-	_consoleBoard->getCell(2, 0)->setHasBomb(true);
+	_consoleBoard->getCell(0, 1)->setHasBomb(true);
+	_consoleBoard->getCell(0, 2)->setHasBomb(true);
 	QCOMPARE(_consoleBoard->stringRepresentation(),
 		boardStringRepresentation);
 
-//	QCOMPARE(_consoleBoard->makeTurn(1,2,false), kSContinue);
 	QCOMPARE(_consoleBoard->makeTurn("c1"), kSContinue);
 	boardStringRepresentation = ("   a b c\n"
 								 "   - - -\n"
