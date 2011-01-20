@@ -50,12 +50,12 @@ SGameCondition SConsoleBoard::makeTurn(QString turnDescription)
 
 	if (firstCharacter.isLetter())
 	{
-		indexY = abc.indexOf(firstCharacter);
-		if (indexY != -1)
+		indexX = abc.indexOf(firstCharacter);
+		if (indexX != -1)
 		{
 			if (secondCharacter.isDigit())
 			{
-				indexX = secondCharacter.digitValue();
+				indexY = secondCharacter.digitValue();
 				if (3 == turnDescription.length())
 				{
 					result = SBoard::makeTurn(indexX, indexY, true);
@@ -74,7 +74,7 @@ QString SConsoleBoard::stringRepresentation()
 {
 	QString result = QString("");
 
-	if((sizeX() > abc.length()) || (sizeX() > 10))
+	if((sizeX() > (uint)abc.length()) || (sizeY() > 10))
 	{
 		result.append("The board cannot be printed.\n");
 	}
@@ -82,24 +82,24 @@ QString SConsoleBoard::stringRepresentation()
 	{
 		//print ' a b c'
 		result.append("  ");
-		for (uint xSize = 0; xSize < sizeY(); xSize++)
+		for (uint indexX = 0; indexX < sizeX(); indexX++)
 		{
-			result.append(QString(" %1").arg(abc.at(xSize)));
+			result.append(QString(" %1").arg(abc.at(indexX)));
 		}
 		result.append("\n");
-		uint cellNumber = 0;
-		for (uint indexX = 0; indexX < sizeX(); indexX++)
+
+		for (uint indexY = 0; indexY < sizeY(); indexY++)
 		{
 			//print '  - - - -'
 			result.append("  ");
-			for (uint indexY = 0; indexY < sizeY(); indexY++)
+			for (uint indexX = 0; indexX < sizeX(); indexX++)
 			{
 				result.append(" -");
 			}
 			result.append("\n");
-			result.append(QString("%1 ").arg(cellNumber));
-			cellNumber++;
-			for (uint indexY = 0; indexY < sizeY(); indexY++)
+
+			result.append(QString("%1 ").arg(indexY));
+			for (uint indexX = 0; indexX < sizeX(); indexX++)
 			{
 				result.append("|");
 				SConsoleCell *consoleCell =
@@ -110,7 +110,7 @@ QString SConsoleBoard::stringRepresentation()
 		}
 		//print ' - - - -'
 		result.append("  ");
-		for (uint xSize = 0; xSize < sizeX(); xSize++)
+		for (uint indexX = 0; indexX < sizeX(); indexX++)
 		{
 			result.append(" -");
 		}

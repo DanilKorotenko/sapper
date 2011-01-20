@@ -39,10 +39,10 @@ SBoard::~SBoard()
 void SBoard::setSize(uint width, uint height)
 {
 	this->clear();
-	for (uint indexX = 0; indexX < height; indexX++)
+	for (uint indexY = 0; indexY < height; indexY++)
 	{
 		SCellVector cellsVector;
-		for (uint indexY = 0; indexY < width; indexY++)
+		for (uint indexX = 0; indexX < width; indexX++)
 		{
 			SCell *cell = this->createCell();
 			cellsVector.push_back(cell);
@@ -53,12 +53,12 @@ void SBoard::setSize(uint width, uint height)
 
 uint SBoard::sizeX()
 {
-	return _cells.size();
+	return _cells.at(0).size();
 }
 
 uint SBoard::sizeY()
 {
-	return _cells.at(0).size();
+	return _cells.size();
 }
 
 SCell *SBoard::getCell(uint indexX, uint indexY)
@@ -67,7 +67,7 @@ SCell *SBoard::getCell(uint indexX, uint indexY)
 	if((indexX >= 0) && (indexX < sizeX()) &&
 		(indexY >= 0) && (indexY < sizeY()))
 	{
-		result = _cells.at(indexX).at(indexY);
+		result = _cells.at(indexY).at(indexX);
 	}
 
 	return result;
@@ -180,9 +180,9 @@ SCell *SBoard::createCell()
 void SBoard::clear()
 {
 	_gameOver = false;
-	for (uint indexX = 0; indexX != sizeX(); indexX++)
+	for (uint indexY = 0; indexY != sizeY(); indexY++)
 	{
-		for (uint indexY = 0; indexY != sizeY(); indexY++)
+		for (uint indexX = 0; indexX != sizeX(); indexX++)
 		{
 			delete getCell(indexX, indexY);
 		}
