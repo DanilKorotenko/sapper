@@ -61,8 +61,7 @@ unsigned int SCell::numberOfBombs()
 	return _numberOfBombs;
 }
 
-void SCell::setNumberOfBombsArround(unsigned int  value)
+void SCell::setNumberOfBombsArround(unsigned int value)
 {
 	_numberOfBombs = value;
 }
-

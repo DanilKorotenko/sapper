@@ -42,7 +42,6 @@ private slots:
 	//game process tests
 	void testMarkUnMark();
 	void testCheckVictory();
-	void testMakeWinnerTurn();
 	void testGameOverTurn();
 	void testCellsChecking();
 	void testBombsPlacing();

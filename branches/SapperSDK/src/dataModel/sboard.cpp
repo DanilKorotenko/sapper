@@ -20,6 +20,7 @@
 
 #include "scell.h"
 
+#include <stdlib.h>
 #include <time.h>
 
 SBoard::SBoard()
@@ -44,8 +45,7 @@ void SBoard::setSize(unsigned int width, unsigned int height)
 		SCellVector cellsVector;
 		for (unsigned int  indexX = 0; indexX < width; indexX++)
 		{
-			SCell *cell = this->createCell();
-			cellsVector.push_back(cell);
+			cellsVector.push_back(new SCell());
 		}
 		_cells.push_back(cellsVector);
 	}
@@ -176,11 +176,6 @@ void SBoard::placeBombs(unsigned int numberOfBombs)
 			bombIndex++;
 		}
 	}
-}
-
-SCell *SBoard::createCell()
-{
-	return new SCell();
 }
 
 void SBoard::clear()
