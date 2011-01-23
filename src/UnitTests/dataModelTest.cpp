@@ -81,29 +81,9 @@ void DataModelTest::testCheckVictory()
 //  - -
 
 	_board->getCell(0, 0)->setHasBomb(true);
-	QCOMPARE(_board->checkVictory(), false);
 	_board->getCell(1, 1)->setHasBomb(true);
-	QCOMPARE(_board->checkVictory(), false);
-	_board->getCell(0, 0)->toggleFlag();
-	QCOMPARE(_board->checkVictory(), false);
-	_board->getCell(1, 1)->toggleFlag();
-	QCOMPARE(_board->checkVictory(), true);
-}
-
-void DataModelTest::testMakeWinnerTurn()
-{
-//  - -
-// |*| |
-//  - -
-// | | |
-//  - -
-	_board->getCell(0, 0)->setHasBomb(true);
-	QCOMPARE(_board->makeTurn(0,0,true), kSWinned);
-
-	//TODO: when the game condition become 'winned' there are no other turns
-	// player can make
-	// Need to test this condition
-
+	QCOMPARE(_board->makeTurn(0,0,true), kSContinue);
+	QCOMPARE(_board->makeTurn(1,1,true), kSWinned);
 }
 
 void DataModelTest::testGameOverTurn()

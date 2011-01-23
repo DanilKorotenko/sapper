@@ -19,7 +19,6 @@
 #ifndef SBOARD_H
 #define SBOARD_H
 
-#include <stdlib.h>
 #include <vector>
 
 class SCell;
@@ -58,19 +57,15 @@ public:
 	// Iterative process. Calls this method for nested cells.
 	void check(int indexX, int indexY);
 
-	bool checkVictory();
-
 	void placeBombs(unsigned int  numberOfBombs);
 
-protected:
-	SCell *createCell();
-
-	bool _gameOver;
 private:
+	bool checkVictory();
 	void clear();
 
 //data
 	std::vector<SCellVector> _cells;
+	bool _gameOver;
 };
 
 #endif // SBOARD_H
