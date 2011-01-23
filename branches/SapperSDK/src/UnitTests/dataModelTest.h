@@ -28,7 +28,7 @@ class DataModelTest: public QObject
 {
 	Q_OBJECT
 private:
-	QPointer<SBoard> _board;
+	SBoard *_board;
 
 //Additional methods for internal use.
 	void verifyInitialState();

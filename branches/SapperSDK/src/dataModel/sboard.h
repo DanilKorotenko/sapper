@@ -19,14 +19,12 @@
 #ifndef SBOARD_H
 #define SBOARD_H
 
-#include <QObject>
-#include <QVector>
-
 #include <stdlib.h>
+#include <vector>
 
 class SCell;
 
-typedef std::vector<SCell *> SCellVector;
+typedef std::vector<SCell*> SCellVector;
 
 enum SGameCondition
 {
@@ -35,34 +33,34 @@ enum SGameCondition
 	kSWinned
 };
 
-class SBoard : public QObject
+class SBoard
 {
-	Q_OBJECT
 public:
 //Constructor/Destructor
-	explicit SBoard(QObject *parent = 0);
-	SBoard(uint width, uint height, QObject *parent = 0);
+	SBoard();
+	SBoard(unsigned int width, unsigned int height);
 
 	~SBoard();
 
 //service methods
-	void setSize(uint width, uint height);
-	uint sizeX();
-	uint sizeY();
-	SCell *getCell(uint indexX, uint indexY);
+	void setSize(unsigned int width, unsigned int  height);
+	unsigned int sizeX();
+	unsigned int sizeY();
+	SCell *getCell(unsigned int indexX, unsigned int indexY);
 	bool gameOver();
 
 //game methods
-	SGameCondition makeTurn(uint indexX, uint indexY, bool setFlag);
+	SGameCondition makeTurn(unsigned int indexX, unsigned int indexY,
+		bool setFlag);
 
 	// Starts the checking of board from the specified cell.
 	// Set to neighbours cells status checked and numbers of bombs around.
 	// Iterative process. Calls this method for nested cells.
-	void check(qint8 indexX, qint8 indexY);
+	void check(int indexX, int indexY);
 
 	bool checkVictory();
 
-	void placeBombs(uint numberOfBombs);
+	void placeBombs(unsigned int  numberOfBombs);
 
 protected:
 	SCell *createCell();
