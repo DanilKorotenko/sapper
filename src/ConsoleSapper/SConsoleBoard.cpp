@@ -39,6 +39,10 @@ SConsoleBoard::~SConsoleBoard()
 	delete board;
 }
 
+void SConsoleBoard::placeBombs(quint8 numberOfBombs)
+{
+	board->placeBombs(numberOfBombs);
+}
 
 SGameCondition SConsoleBoard::makeTurn(QString turnDescription)
 {

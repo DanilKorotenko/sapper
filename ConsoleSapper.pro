@@ -32,14 +32,12 @@ SOURCES += ./src/ConsoleSapper/main.cpp \
 	src/ConsoleSapper/SConsoleGame.cpp \
 	src/ConsoleSapper/SConsoleBoard.cpp \
 	src/dataModel/scell.cpp \
-	src/dataModel/sboard.cpp \
-	src/ConsoleSapper/SConsoleCell.cpp
+	src/dataModel/sboard.cpp
 
 HEADERS += src/ConsoleSapper/SConsoleGame.h \
 	src/ConsoleSapper/SConsoleBoard.h \
 	src/dataModel/sboard.h \
-	src/dataModel/scell.h \
-	src/ConsoleSapper/SConsoleCell.h
+	src/dataModel/scell.h
 
 RESOURCES += \
 	Resources/ConsoleSapperResources.qrc
