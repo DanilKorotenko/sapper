@@ -19,22 +19,32 @@
 #ifndef SCONSOLEBOARD_H
 #define SCONSOLEBOARD_H
 
+#include <QObject>
+
 #include "dataModel/sboard.h"
 
-class SConsoleBoard : public SBoard
+class SConsoleBoard : public QObject
 {
 	Q_OBJECT
 public:
 	explicit SConsoleBoard(QObject *parent = 0);
 	SConsoleBoard(uint width, uint height, QObject *parent = 0);
 
+	~SConsoleBoard();
+
 	SGameCondition makeTurn(QString turnDescription);
 
 	QString stringRepresentation();
 
-protected:
-	SCell *createCell();
+	void setSize(quint8 width, quint8 height);
 
+	void setBomb(quint8 x, quint8 y);
+
+private:
+	SCell *createCell();
+	SBoard *board;
+
+	QString stringRepresentationForCell(SCell *cell, bool gameOver);
 };
 
 #endif // SCONSOLEBOARD_H

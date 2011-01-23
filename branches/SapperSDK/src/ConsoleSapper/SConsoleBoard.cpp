@@ -23,16 +23,22 @@
 
 static QString const abc = "abcdefghijklmnopqrstuvwxyz";
 
-SConsoleBoard::SConsoleBoard(QObject *parent) : SBoard(parent)
+SConsoleBoard::SConsoleBoard(QObject *parent) : QObject(parent)
 {
-
+	board = new SBoard();
 }
 
-SConsoleBoard::SConsoleBoard(uint width, uint height,
-	QObject *parent) : SBoard(width, height, parent)
+SConsoleBoard::SConsoleBoard(uint width, uint height, QObject *parent) :
+	QObject(parent)
 {
-
+	board = new SBoard(width, height);
 }
+
+SConsoleBoard::~SConsoleBoard()
+{
+	delete board;
+}
+
 
 SGameCondition SConsoleBoard::makeTurn(QString turnDescription)
 {
@@ -58,11 +64,11 @@ SGameCondition SConsoleBoard::makeTurn(QString turnDescription)
 				indexY = secondCharacter.digitValue();
 				if (3 == turnDescription.length())
 				{
-					result = SBoard::makeTurn(indexX, indexY, true);
+					result = board->makeTurn(indexX, indexY, true);
 				}
 				else if (2 == turnDescription.length())
 				{
-					result = SBoard::makeTurn(indexX, indexY, false);
+					result = board->makeTurn(indexX, indexY, false);
 				}
 			}
 		}
@@ -70,11 +76,22 @@ SGameCondition SConsoleBoard::makeTurn(QString turnDescription)
 	return result;
 }
 
+void SConsoleBoard::setSize(quint8 width, quint8 height)
+{
+	board->setSize(width, height);
+}
+
+void SConsoleBoard::setBomb(quint8 x, quint8 y)
+{
+	board->getCell(x,y)->setHasBomb(true);
+}
+
+
 QString SConsoleBoard::stringRepresentation()
 {
 	QString result = QString("");
 
-	if((sizeX() > (uint)abc.length()) || (sizeY() > 10))
+	if((board->sizeX() > (uint)abc.length()) || (board->sizeY() > 10))
 	{
 		result.append("The board cannot be printed.\n");
 	}
@@ -82,35 +99,35 @@ QString SConsoleBoard::stringRepresentation()
 	{
 		//print ' a b c'
 		result.append("  ");
-		for (uint indexX = 0; indexX < sizeX(); indexX++)
+		for (uint indexX = 0; indexX < board->sizeX(); indexX++)
 		{
 			result.append(QString(" %1").arg(abc.at(indexX)));
 		}
 		result.append("\n");
 
-		for (uint indexY = 0; indexY < sizeY(); indexY++)
+		for (uint indexY = 0; indexY < board->sizeY(); indexY++)
 		{
 			//print '  - - - -'
 			result.append("  ");
-			for (uint indexX = 0; indexX < sizeX(); indexX++)
+			for (uint indexX = 0; indexX < board->sizeX(); indexX++)
 			{
 				result.append(" -");
 			}
 			result.append("\n");
 
 			result.append(QString("%1 ").arg(indexY));
-			for (uint indexX = 0; indexX < sizeX(); indexX++)
+			for (uint indexX = 0; indexX < board->sizeX(); indexX++)
 			{
 				result.append("|");
-				SConsoleCell *consoleCell =
-					(SConsoleCell *)getCell(indexX, indexY);
-				result.append(consoleCell->stringRepresentation(_gameOver));
+				SCell *cell = board->getCell(indexX, indexY);
+				result.append(this->stringRepresentationForCell(cell,
+					board->gameOver()));
 			}
 			result.append("|\n");
 		}
 		//print ' - - - -'
 		result.append("  ");
-		for (uint indexX = 0; indexX < sizeX(); indexX++)
+		for (uint indexX = 0; indexX < board->sizeX(); indexX++)
 		{
 			result.append(" -");
 		}
@@ -120,8 +137,52 @@ QString SConsoleBoard::stringRepresentation()
 	return result;
 }
 
-SCell *SConsoleBoard::createCell()
+QString SConsoleBoard::stringRepresentationForCell(SCell *cell, bool gameOver)
 {
-	return new SConsoleCell();
+	QString result;
+
+	if (cell->checked())
+	{
+		if (0 == cell->numberOfBombs())
+		{
+			result = " ";
+		}
+		else
+		{
+			result.append(QString("%1").arg(cell->numberOfBombs()));
+		}
+	}
+	else if (gameOver)
+	{
+		if (cell->flagged())
+		{
+			if (cell->hasBomb())
+			{
+				result = "F";
+			}
+			else
+			{
+				result = "-";
+			}
+		}
+		else if (cell->hasBomb())
+		{
+			result = "*";
+		}
+		else
+		{
+			result = " ";
+		}
+	}
+	else if (cell->flagged())
+	{
+		result = "F";
+	}
+	else
+	{
+		result = "?";
+	}
+
+	return result;
 }
 

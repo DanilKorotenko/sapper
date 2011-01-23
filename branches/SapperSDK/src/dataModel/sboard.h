@@ -50,6 +50,7 @@ public:
 	uint sizeX();
 	uint sizeY();
 	SCell *getCell(uint indexX, uint indexY);
+	bool gameOver();
 
 //game methods
 	SGameCondition makeTurn(uint indexX, uint indexY, bool setFlag);
