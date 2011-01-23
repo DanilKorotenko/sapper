@@ -73,6 +73,11 @@ SCell *SBoard::getCell(uint indexX, uint indexY)
 	return result;
 }
 
+bool SBoard::gameOver()
+{
+	return _gameOver;
+}
+
 SGameCondition SBoard::makeTurn(uint indexX, uint indexY, bool setFlag)
 {
 	SGameCondition result = kSContinue;
