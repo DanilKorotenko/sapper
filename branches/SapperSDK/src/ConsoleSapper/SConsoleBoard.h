@@ -39,6 +39,7 @@ public:
 	void setSize(quint8 width, quint8 height);
 
 	void setBomb(quint8 x, quint8 y);
+	void placeBombs(quint8 numberOfBombs);
 
 private:
 	SCell *createCell();
