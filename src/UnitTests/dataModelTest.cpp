@@ -37,7 +37,7 @@ void DataModelTest::init()
 
 	_board = new SBoard(boardXSize, boardYSize);
 
-	QVERIFY(!_board.isNull());
+	QVERIFY(NULL != _board);
 }
 
 void DataModelTest::testBoardCreation()

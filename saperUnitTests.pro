@@ -25,13 +25,11 @@ HEADERS += 	src/UnitTests/dataModelTest.h \
 	src/UnitTests/ConsoleUITest.h \
 	src/dataModel/scell.h \
 	src/dataModel/sboard.h \
-	src/ConsoleSapper/SConsoleBoard.h \
-	src/ConsoleSapper/SConsoleCell.h
+	src/ConsoleSapper/SConsoleBoard.h
 
 SOURCES += src/UnitTests/dataModelTest.cpp \
 	src/UnitTests/ConsoleUITest.cpp \
 	src/dataModel/scell.cpp \
 	src/dataModel/sboard.cpp \
 	src/ConsoleSapper/SConsoleBoard.cpp \
-	src/UnitTests/main.cpp \
-	src/ConsoleSapper/SConsoleCell.cpp
+	src/UnitTests/main.cpp

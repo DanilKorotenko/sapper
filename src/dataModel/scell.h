@@ -19,13 +19,10 @@
 #ifndef SCELL_H
 #define SCELL_H
 
-#include <QObject>
-
-class SCell : public QObject
+class SCell
 {
-	Q_OBJECT
 public:
-	explicit SCell(QObject *parent = 0);
+	SCell();
 
 	bool hasBomb();
 	void setHasBomb(bool value);
@@ -36,14 +33,14 @@ public:
 	bool flagged();
 	void toggleFlag();
 
-	uint numberOfBombs();
-	void setNumberOfBombsArround(uint value);
+	unsigned int numberOfBombs();
+	void setNumberOfBombsArround(unsigned int  value);
 
 private:
 	bool _hasBomb;
 	bool _checked;
 	bool _flagged;
-	uint _numberOfBombs;
+	unsigned int _numberOfBombs;
 
 };
 

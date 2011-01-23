@@ -22,11 +22,11 @@
 
 #include <time.h>
 
-SBoard::SBoard(QObject *parent) : QObject(parent)
+SBoard::SBoard()
 {
 }
 
-SBoard::SBoard(uint width, uint height, QObject *parent) : QObject(parent)
+SBoard::SBoard(unsigned int width, unsigned int height)
 {
 	this->setSize(width, height);
 }
@@ -36,13 +36,13 @@ SBoard::~SBoard()
 	this->clear();
 }
 
-void SBoard::setSize(uint width, uint height)
+void SBoard::setSize(unsigned int width, unsigned int height)
 {
 	this->clear();
-	for (uint indexY = 0; indexY < height; indexY++)
+	for (unsigned int indexY = 0; indexY < height; indexY++)
 	{
 		SCellVector cellsVector;
-		for (uint indexX = 0; indexX < width; indexX++)
+		for (unsigned int  indexX = 0; indexX < width; indexX++)
 		{
 			SCell *cell = this->createCell();
 			cellsVector.push_back(cell);
@@ -51,17 +51,17 @@ void SBoard::setSize(uint width, uint height)
 	}
 }
 
-uint SBoard::sizeX()
+unsigned int SBoard::sizeX()
 {
 	return _cells.at(0).size();
 }
 
-uint SBoard::sizeY()
+unsigned int SBoard::sizeY()
 {
 	return _cells.size();
 }
 
-SCell *SBoard::getCell(uint indexX, uint indexY)
+SCell *SBoard::getCell(unsigned int indexX, unsigned int indexY)
 {
 	SCell *result = NULL;
 	if((indexX >= 0) && (indexX < sizeX()) &&
@@ -78,7 +78,8 @@ bool SBoard::gameOver()
 	return _gameOver;
 }
 
-SGameCondition SBoard::makeTurn(uint indexX, uint indexY, bool setFlag)
+SGameCondition SBoard::makeTurn(unsigned int  indexX, unsigned int indexY,
+	bool setFlag)
 {
 	SGameCondition result = kSContinue;
 	SCell *cell = getCell(indexX, indexY);
@@ -103,7 +104,7 @@ SGameCondition SBoard::makeTurn(uint indexX, uint indexY, bool setFlag)
 	return result;
 }
 
-void SBoard::check(qint8 indexX, qint8 indexY)
+void SBoard::check(int indexX, int indexY)
 {
 	SCell *cell = getCell(indexX, indexY);
 	if ((NULL == cell) || (cell->hasBomb()) || (cell->checked()))
@@ -113,7 +114,7 @@ void SBoard::check(qint8 indexX, qint8 indexY)
 
 	cell->setChecked(true);
 
-	uint numberOfBombs = 0;
+	unsigned int numberOfBombs = 0;
 	for(int cellIndexX = indexX-1; cellIndexX <= indexX + 1; cellIndexX++)
 	{
 		for(int cellIndexY = indexY-1; cellIndexY <= indexY + 1;
@@ -146,9 +147,9 @@ void SBoard::check(qint8 indexX, qint8 indexY)
 bool SBoard::checkVictory()
 {
 	bool result = true;
-	for (uint indexX = 0; indexX != sizeX(); indexX++)
+	for (unsigned int indexX = 0; indexX != sizeX(); indexX++)
 	{
-		for (uint indexY = 0; indexY != sizeY(); indexY++)
+		for (unsigned int indexY = 0; indexY != sizeY(); indexY++)
 		{
 			SCell *cell = this->getCell(indexX, indexY);
 			if (cell->hasBomb())
@@ -161,13 +162,13 @@ bool SBoard::checkVictory()
 	return result;
 }
 
-void SBoard::placeBombs(uint numberOfBombs)
+void SBoard::placeBombs(unsigned int numberOfBombs)
 {
 	srand(time(NULL));
-	for (uint bombIndex = 0; bombIndex < numberOfBombs; )
+	for (unsigned int bombIndex = 0; bombIndex < numberOfBombs; )
 	{
-		uint x = rand() % sizeX();
-		uint y = rand() % sizeY();
+		unsigned int x = rand() % sizeX();
+		unsigned int y = rand() % sizeY();
 		SCell *cell = getCell(x, y);
 		if ((cell != NULL) && (!cell->hasBomb()))
 		{
@@ -185,9 +186,9 @@ SCell *SBoard::createCell()
 void SBoard::clear()
 {
 	_gameOver = false;
-	for (uint indexY = 0; indexY != sizeY(); indexY++)
+	for (unsigned int indexY = 0; indexY != sizeY(); indexY++)
 	{
-		for (uint indexX = 0; indexX != sizeX(); indexX++)
+		for (unsigned int indexX = 0; indexX != sizeX(); indexX++)
 		{
 			delete getCell(indexX, indexY);
 		}

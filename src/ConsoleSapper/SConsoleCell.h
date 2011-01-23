@@ -21,7 +21,7 @@
 
 #include "dataModel/scell.h"
 
-class SConsoleCell : public SCell
+class SConsoleCell : public QObject
 {
 	Q_OBJECT
 public:
