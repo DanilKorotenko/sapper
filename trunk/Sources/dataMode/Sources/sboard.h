@@ -19,6 +19,8 @@
 #ifndef SBOARD_H
 #define SBOARD_H
 
+#include "DataModel.h"
+
 #include <QObject>
 #include <QVector>
 
@@ -33,7 +35,7 @@ enum SGameCondition
 	kSWinned
 };
 
-class SBoard : public QObject
+class DATAMODELSHARED_EXPORT SBoard : public QObject
 {
 	Q_OBJECT
 public:
