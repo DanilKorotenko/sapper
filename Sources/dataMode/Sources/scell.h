@@ -19,9 +19,11 @@
 #ifndef SCELL_H
 #define SCELL_H
 
+#include "DataModel.h"
+
 #include <QObject>
 
-class SCell : public QObject
+class DATAMODELSHARED_EXPORT SCell : public QObject
 {
 	Q_OBJECT
 public:

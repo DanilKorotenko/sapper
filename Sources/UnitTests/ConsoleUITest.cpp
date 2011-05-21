@@ -190,7 +190,6 @@ void ConsoleUITest::testBoardDisplayingNumberOfBombs()
 	QCOMPARE(_consoleBoard->stringRepresentation(),
 		boardStringRepresentation);
 
-//	QCOMPARE(_consoleBoard->makeTurn(1,2,false), kSContinue);
 	QCOMPARE(_consoleBoard->makeTurn("c1"), kSContinue);
 	boardStringRepresentation = ("   a b c\n"
 								 "   - - -\n"
@@ -236,7 +235,6 @@ void ConsoleUITest::testBoardDisplayingNumberOfBombs()
 								 "   - - - - -\n");
 	QCOMPARE(_consoleBoard->stringRepresentation(),
 		boardStringRepresentation);
-
 }
 
 void ConsoleUITest::testConsoleMakeTurn()
